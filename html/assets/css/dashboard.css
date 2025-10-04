@@ -1,0 +1,1788 @@
+:root {
+    --primary-color: #01172f;
+}
+
+body {
+    font-family: 'inter';
+}
+
+.vertiqal-body {
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.vertiqal-sidebar {
+    background: var(--primary-color);
+    min-height: 100vh;
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    overflow-x: auto;
+}
+
+.vertiqal-logo {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vertiqal-logo-text {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.vertiqal-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(45deg, #4f46e5, #7c3aed);
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.vertiqal-nav-section {
+    padding: 20px 0 10px 20px;
+    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vertiqal-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vertiqal-nav-item {
+    margin-bottom: 2px;
+    padding-left: 10px;
+}
+
+.vertiqal-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.vertiqal-nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+.vertiqal-nav-link.active {
+    background: #dbeafe;
+    color: var(--primary-color);
+}
+
+.vertiqal-nav-icon {
+    width: 20px;
+    margin-right: 12px;
+    text-align: center;
+}
+
+.vertiqal-compliance-toggle {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    float: right;
+    margin-right: 15px;
+}
+
+.vertiqal-compliance-submenu {
+    padding-left: 40px;
+    margin-top: 5px;
+}
+
+.vertiqal-compliance-submenu a {
+    display: block;
+    color: #6b7280;
+    padding: 8px 0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.vertiqal-compliance-submenu a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.vertiqal-user-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+
+.vertiqal-user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.vertiqal-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+    margin-right: 10px;
+}
+
+.vertiqal-user-details h6 {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.vertiqal-user-details p {
+    color: #9ca3af;
+    margin: 0;
+    font-size: 12px;
+}
+
+.vertiqal-logout-btn {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.vertiqal-logout-btn:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.vertiqal-main-content {
+    margin-left: 250px;
+    padding: 0;
+}
+
+.vertiqal-header {
+    background: white;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vertiqal-welcome-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.vertiqal-welcome-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+
+.vertiqal-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.vertiqal-notification-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.vertiqal-notification-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 8px;
+    height: 8px;
+    background: #ef4444;
+    border-radius: 50%;
+}
+
+.vertiqal-user-menu {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #8b5cf6, #a855f7);
+    cursor: pointer;
+}
+
+.vertiqal-dashboard-content {
+    padding: 30px;
+}
+
+.vertiqal-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.vertiqal-stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.vertiqal-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vertiqal-stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.vertiqal-stat-title {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.vertiqal-stat-icon {
+    width: 24px;
+    height: 24px;
+    color: #9ca3af;
+}
+
+.vertiqal-stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 5px 0;
+}
+
+.vertiqal-stat-description {
+    color: #6b7280;
+    font-size: 12px;
+    margin: 0 0 10px 0;
+}
+
+.vertiqal-stat-change {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.vertiqal-stat-change.positive {
+    color: #059669;
+    background: #d1fae5;
+}
+
+.vertiqal-nav-tabs {
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 30px;
+}
+
+.vertiqal-nav-tab {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    color: #6b7280;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.vertiqal-nav-tab:hover {
+    color: #4f46e5;
+}
+
+.vertiqal-nav-tab.active {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+}
+
+.vertiqal-tenders-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.vertiqal-tenders-header {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vertiqal-tenders-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.vertiqal-view-all-btn {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.vertiqal-view-all-btn:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.vertiqal-tender-item {
+    padding: 25px 30px;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+}
+
+.vertiqal-tender-item:last-child {
+    border-bottom: none;
+}
+
+.vertiqal-tender-item:hover {
+    background-color: #f9fafb;
+}
+
+.vertiqal-tender-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.vertiqal-tender-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+}
+
+.vertiqal-tender-company {
+    color: #6b7280;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.vertiqal-company-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+.vertiqal-tender-deadline {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.vertiqal-tender-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vertiqal-tender-meta {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.vertiqal-tender-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.vertiqal-btn-view {
+    padding: 8px 16px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.vertiqal-btn-view:hover {
+    background: #e5e7eb;
+    text-decoration: none;
+    color: #374151;
+}
+
+.vertiqal-btn-bid {
+    padding: 8px 16px;
+    background: #374151;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vertiqal-btn-bid:hover {
+    background: linear-gradient(90deg, #3730a3, #6d28d9);
+}
+
+@media (max-width: 768px) {
+    .vertiqal-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .vertiqal-main-content {
+        margin-left: 0;
+    }
+
+    .vertiqal-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ------------ */
+/* Tenders CSS */
+/* ---------- */
+
+.vertiqal-header-tabs {
+    border-bottom: 1px solid #dee2e6;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.vertiqal-tab {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.vertiqal-tab.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+.vertiqal-tab:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.vertiqal-search-bar {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vertiqal-search-bar input {
+    padding: 25px;
+}
+
+.vertiqal-filters {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vertiqal-card {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.vertiqal-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.vertiqal-card-body {
+    padding: 20px;
+}
+
+.vertiqal-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.vertiqal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.vertiqal-description {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.vertiqal-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.vertiqal-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vertiqal-tag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.vertiqal-btn-open {
+    background-color: #dbeafe;
+    color: var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    border: none;
+}
+
+.vertiqal-btn-open:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.vertiqal-btn-details {
+    color: #01172f;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.vertiqal-btn-details:hover {
+    color: #0056b3;
+}
+
+.vertiqal-select {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: white;
+}
+
+.vertiqal-search-input {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.vertiqal-search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+    .vertiqal-tab {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .vertiqal-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .vertiqal-card-body {
+        padding: 15px;
+    }
+
+    .vertiqal-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .vertiqal-container {
+        padding: 10px 0;
+    }
+
+    .vertiqal-search-bar,
+    .vertiqal-filters {
+        padding: 15px;
+    }
+}
+
+/* ------------ */
+/* Tenders CSS */
+/* ---------- */
+.vertiqal-back-btn {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.vertiqal-back-btn:hover {
+    color: #495057;
+    text-decoration: none;
+}
+
+.vertiqal-title {
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.vertiqal-meta {
+    color: #6c757d;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1rem;
+}
+
+.vertiqal-meta i {
+    margin-right: 5px;
+}
+
+.vertiqal-open-badge {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+}
+
+.vertiqal-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+}
+
+.vertiqal-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.vertiqal-description {
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.vertiqal-specs-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 14px;
+    color: #374151;
+}
+
+.vertiqal-check-icon {
+    color: #10b981;
+    margin-right: 0.75rem;
+    font-size: 16px;
+}
+
+.vertiqal-info-item {
+    margin-bottom: 1rem;
+}
+
+.vertiqal-info-label {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 0.25rem;
+}
+
+.vertiqal-info-value {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.vertiqal-info-icon {
+    color: #9ca3af;
+    margin-right: 0.75rem;
+    font-size: 16px;
+}
+
+.vertiqal-condition-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    color: #374151;
+}
+
+.vertiqal-info-icon-blue {
+    color: #3b82f6;
+    margin-right: 0.5rem;
+    font-size: 14px;
+}
+
+.vertiqal-attachment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.vertiqal-attachment-info {
+    display: flex;
+    align-items: center;
+}
+
+.vertiqal-attachment-icon {
+    color: #6b7280;
+    margin-right: 0.75rem;
+    font-size: 18px;
+}
+
+.vertiqal-attachment-name {
+    font-weight: 500;
+    color: #1f2937;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.vertiqal-attachment-size {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.vertiqal-download-btn {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.vertiqal-download-btn:hover {
+    color: #374151;
+    text-decoration: none;
+}
+
+.vertiqal-question-input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.vertiqal-question-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.vertiqal-send-btn {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.vertiqal-send-btn:hover {
+    background-color: #bfdbfe;
+    color: #1e40af;
+}
+
+.vertiqal-submit-section {
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.vertiqal-submit-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.vertiqal-submit-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-submit-btn {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.vertiqal-submit-btn:hover {
+    background-color: #1e40af;
+    color: white;
+}
+
+/* --------- */
+/* bids CSS */
+/* ------- */
+.vertiqal-bid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-bid-title {
+    color: #1e3a8a;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.vertiqal-bid-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.vertiqal-add-btn {
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+}
+
+.vertiqal-add-btn:hover {
+    background-color: #1e40af;
+    border-color: #1e40af;
+}
+
+.vertiqal-nav-tabs {
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 2rem;
+}
+
+.vertiqal-nav-tabs .nav-link {
+    color: #9ca3af;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    background: none;
+}
+
+.vertiqal-nav-tabs .nav-link.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+    background: none;
+}
+
+.vertiqal-nav-tabs .nav-link:hover {
+    color: #3b82f6;
+    border-color: transparent;
+}
+
+.vertiqal-filters-row {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-search-input {
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 0.375rem;
+}
+
+.vertiqal-search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.vertiqal-search-wrapper {
+    position: relative;
+}
+
+.vertiqal-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.vertiqal-table-wrapper {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.vertiqal-table {
+    margin: 0;
+}
+
+.vertiqal-table thead th {
+    background-color: #f9fafb;
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.vertiqal-table tbody td {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+.vertiqal-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.vertiqal-tender-title {
+    font-weight: 600;
+    color: #111827;
+}
+
+.vertiqal-buyer-name {
+    color: #374151;
+}
+
+.vertiqal-category-badge {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+}
+
+.vertiqal-status-badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.vertiqal-status-review {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.vertiqal-status-accepted {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.vertiqal-status-rejected {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.vertiqal-status-submitted {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.vertiqal-amount {
+    font-weight: 600;
+    color: #111827;
+}
+
+.vertiqal-location {
+    color: #6b7280;
+}
+
+.vertiqal-date {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.vertiqal-actions-dropdown {
+    border: none;
+    background: none;
+    color: #6b7280;
+    font-size: 1.25rem;
+}
+
+.vertiqal-actions-dropdown:hover {
+    color: #374151;
+}
+
+.vertiqal-actions-menu {
+    min-width: 150px;
+}
+
+.vertiqal-actions-menu .dropdown-item {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.vertiqal-actions-menu .dropdown-item:hover {
+    background-color: #f3f4f6;
+}
+
+/* ------------ */
+/* add bid CSS */
+/* ---------- */
+.vertiqal-header-section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.vertiqal-main-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.vertiqal-subtitle {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.vertiqal-form-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.vertiqal-select-wrapper {
+    position: relative;
+}
+
+.vertiqal-currency-input {
+    position: relative;
+}
+
+.vertiqal-currency-symbol {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.vertiqal-currency-field {
+    padding-left: 2rem;
+}
+
+.vertiqal-upload-area {
+    border: 2px dashed #ced4da;
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.vertiqal-upload-area:hover {
+    border-color: #0056b3;
+    background-color: #e3f2fd;
+}
+
+.vertiqal-upload-icon {
+    font-size: 2rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.vertiqal-upload-title {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.vertiqal-upload-description {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.vertiqal-upload-button {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    color: #495057;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.vertiqal-upload-button:hover {
+    background-color: #e9ecef;
+}
+
+.vertiqal-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.vertiqal-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.vertiqal-checkbox {
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.vertiqal-checkbox-label {
+    color: #495057;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.vertiqal-button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.vertiqal-btn-cancel {
+    background-color: #ffffff;
+    color: #6c757d;
+    border: 1px solid #ced4da;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.vertiqal-btn-cancel:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.vertiqal-btn-submit {
+    background-color: #0056b3;
+    color: #ffffff;
+    border: 1px solid #0056b3;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.vertiqal-btn-submit:hover {
+    background-color: #004494;
+    border-color: #004494;
+}
+
+@media (max-width: 768px) {
+    .vertiqal-bid-container {
+        padding: 1.5rem;
+        margin: 0.5rem 0;
+    }
+
+    .vertiqal-button-group {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    .vertiqal-btn-cancel,
+    .vertiqal-btn-submit {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ------------------ */
+/* purchase page CSS */
+/* ---------------- */
+.vertiqal-header-title {
+    color: #1e3a8a;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.vertiqal-header-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.vertiqal-export-btn {
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.vertiqal-export-btn:hover {
+    background-color: #1e40af;
+    border-color: #1e40af;
+}
+
+.vertiqal-stats-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.vertiqal-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.vertiqal-stat-label {
+    color: #6b7280;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.vertiqal-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.vertiqal-icon-green {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+.vertiqal-icon-blue {
+    background-color: #dbeafe;
+    color: #3b82f6;
+}
+
+.vertiqal-icon-orange {
+    background-color: #fed7aa;
+    color: #f59e0b;
+}
+
+.vertiqal-icon-purple {
+    background-color: #e9d5ff;
+    color: #8b5cf6;
+}
+
+.vertiqal-nav-tabs {
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 30px;
+}
+
+.vertiqal-nav-link {
+    border: none;
+    color: #6b7280;
+    font-weight: 500;
+    padding: 15px 20px;
+    margin-right: 30px;
+    border-bottom: 3px solid transparent;
+}
+
+.vertiqal-search-filter-bar {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.vertiqal-search-input {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 10px 15px 10px 40px;
+    font-size: 0.875rem;
+}
+
+.vertiqal-search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.vertiqal-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.vertiqal-table-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.vertiqal-data-table {
+    margin: 0;
+}
+
+.vertiqal-table-header {
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.vertiqal-table-header th {
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 15px 20px;
+    border: none;
+}
+
+.vertiqal-table-row {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.vertiqal-table-row:last-child {
+    border-bottom: none;
+}
+
+.vertiqal-table-row td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    border: none;
+}
+
+.vertiqal-contract-id {
+    color: #1e3a8a;
+    font-weight: 600;
+}
+
+.vertiqal-vendor-name {
+    color: #4338ca;
+    font-weight: 500;
+}
+
+.vertiqal-amount {
+    font-weight: 600;
+    color: #111827;
+}
+
+.vertiqal-status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.vertiqal-status-signed {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.vertiqal-status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.vertiqal-status-invalid {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.vertiqal-status-draft {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.vertiqal-pagination-container {
+    background: white;
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+}
+
+.vertiqal-pagination-info {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.vertiqal-pagination-nav .btn {
+    border: 1px solid #d1d5db;
+    color: #374151;
+    background: white;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    margin-left: 8px;
+}
+
+.vertiqal-pagination-nav .btn:hover:not(:disabled) {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.vertiqal-pagination-nav .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* ------------------- */
+/* View contract & PO */
+/* ----------------- */
+.vertiqal-contract-header {
+            background-color: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 0;
+        }
+        
+        .vertiqal-contract-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .vertiqal-back-arrow {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .vertiqal-back-arrow:hover {
+            color: #495057;
+        }
+        
+        .vertiqal-status-badge {
+            background-color: #6c757d;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+        }
+        
+        .vertiqal-main-box {
+            padding: 1.5rem;
+        }
+        
+        .vertiqal-overview-section {
+            background-color: white;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vertiqal-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vertiqal-section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .vertiqal-pending-badge {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+        
+        .vertiqal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+        
+        .vertiqal-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .vertiqal-info-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        
+        .vertiqal-info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .vertiqal-commodity-value {
+            color: #28a745;
+        }
+        
+        .vertiqal-price-value {
+            color: #007bff;
+        }
+        
+        .vertiqal-terms-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .vertiqal-terms-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vertiqal-terms-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin: 0;
+        }
+        
+        .vertiqal-parties-section {
+            background-color: white;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vertiqal-party-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .vertiqal-party-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .vertiqal-party-role {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+        
+        .vertiqal-party-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .vertiqal-conditions-section {
+            background-color: white;
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vertiqal-condition-item {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vertiqal-condition-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .vertiqal-actions-section {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding-top: 1rem;
+        }
+        
+        .vertiqal-btn-outline {
+            border: 1px solid #dee2e6;
+            background-color: white;
+            color: #495057;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .vertiqal-btn-outline:hover {
+            background-color: #f8f9fa;
+            border-color: #adb5bd;
+            color: #495057;
+            text-decoration: none;
+        }
+        
+        .vertiqal-btn-primary {
+            background-color: #1e3a5f;
+            color: white;
+            border: 1px solid #1e3a5f;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .vertiqal-btn-primary:hover {
+            background-color: #16324d;
+            border-color: #16324d;
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .vertiqal-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .vertiqal-actions-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .vertiqal-contract-header {
+                padding: 0.75rem 1rem;
+            }
+            
+            .vertiqal-main-box {
+                padding: 1rem;
+            }
+        }
