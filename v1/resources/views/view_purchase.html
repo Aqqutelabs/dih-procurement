@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertiqal Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css?v=2.3">
+    
+</head>
+<body class="vertiqal-body">
+    <!-- Sidebar -->
+    <div class="vertiqal-sidebar">
+        <div class="vertiqal-logo">
+            <div class="d-flex align-items-center">
+                <img src="assets/img/logo.png" height="40" alt="Logo">
+            </div>
+        </div>
+
+        <div class="vertiqal-nav-section">MAIN</div>
+        <ul class="vertiqal-nav">
+            <li class="vertiqal-nav-item">
+                <a href="dashboard.php" class="vertiqal-nav-link ">
+                    <i class="fas fa-th-large vertiqal-nav-icon"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="tenders.php" class="vertiqal-nav-link ">
+                    <i class="fas fa-file-alt vertiqal-nav-icon"></i>
+                    Tenders
+                </a>
+            </li>
+            <li class="vertiqal-nav-item" >
+                <a href="bids.php" class="vertiqal-nav-link ">
+                    <i class="fas fa-chart-line vertiqal-nav-icon"></i>
+                    Bids
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="purchase.php" class="vertiqal-nav-link active">
+                    <i class="fas fa-handshake vertiqal-nav-icon"></i>
+                    Contracts & POs
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="#" class="vertiqal-nav-link">
+                    <i class="fas fa-shield-alt vertiqal-nav-icon"></i>
+                    Compliance
+                    <button class="vertiqal-compliance-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </a>
+                <div class="vertiqal-compliance-submenu" style="display: none">
+                    <a href="#">AFCTA</a>
+                    <a href="#">EU</a>
+                    <a href="#">US</a>
+                    <a href="#">China</a>
+                    <a href="#">LATAM</a>
+                    <a href="#">MENA</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="vertiqal-user-section">
+            <div class="vertiqal-user-info">
+                <div class="vertiqal-user-avatar"></div>
+                <div class="vertiqal-user-details">
+                    <h6>John Doe</h6>
+                    <p>johndoe12@gmail.com</p>
+                </div>
+            </div>
+            <a href="#" class="vertiqal-logout-btn">
+                <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
+                Log Out
+            </a>
+        </div>
+    </div>
+<div class="vertiqal-main-content">
+    <div class="vertiqal-dashboard-content">
+        <!-- Contract Header -->
+        <div class="vertiqal-contract-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="purchase.php"><i class="fas fa-arrow-left vertiqal-back-arrow"></i></a>
+                <h1 class="vertiqal-contract-title">Contract Details - CNT-2025-001</h1>
+            </div>
+            <span class="vertiqal-status-badge">Pending</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="vertiqal-main-box">
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-lg-8">
+                    <!-- Contract Overview -->
+                    <div class="vertiqal-overview-section">
+                        <div class="vertiqal-section-header">
+                            <h2 class="vertiqal-section-title">Contract Overview</h2>
+                            <span class="vertiqal-pending-badge">Pending</span>
+                        </div>
+
+                        <div class="vertiqal-info-grid">
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">Vendor's Name</span>
+                                <span class="vertiqal-info-value">Office Supplies P.</span>
+                            </div>
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">Commodity</span>
+                                <span class="vertiqal-info-value vertiqal-commodity-value">Maize</span>
+                            </div>
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">Unit Price</span>
+                                <span class="vertiqal-info-value vertiqal-price-value">₦100,000</span>
+                            </div>
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">Total Value</span>
+                                <span class="vertiqal-info-value vertiqal-price-value">₦500,000</span>
+                            </div>
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">Start Date</span>
+                                <span class="vertiqal-info-value">15 Aug 2025</span>
+                            </div>
+                            <div class="vertiqal-info-item">
+                                <span class="vertiqal-info-label">End Date</span>
+                                <span class="vertiqal-info-value">20 Aug 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="vertiqal-terms-box">
+                            <div class="vertiqal-terms-title">Terms & Conditions</div>
+                            <p class="vertiqal-terms-text">Delivery within 90 days, quality grade A minimum, payment terms NET 30.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contract Terms & Conditions -->
+                    <div class="vertiqal-conditions-section">
+                        <h2 class="vertiqal-section-title mb-4">Contract Terms & Conditions</h2>
+
+                        <div class="vertiqal-condition-item">Contracts cannot be edited once signed</div>
+                        <div class="vertiqal-condition-item">Invalidation preserves the record but stops execution.</div>
+                        <div class="vertiqal-condition-item">Downloadable signed copies are always available.</div>
+                        <div class="vertiqal-condition-item">All contracts are encrypted and stored in secure vault.</div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-lg-4">
+                    <!-- Contract Parties -->
+                    <div class="vertiqal-parties-section">
+                        <h2 class="vertiqal-section-title mb-4">Contract Parties</h2>
+
+                        <div class="vertiqal-party-item">
+                            <div class="vertiqal-party-role">Buyer</div>
+                            <div class="vertiqal-party-name">Tech Solution Inc</div>
+                        </div>
+
+                        <div class="vertiqal-party-item">
+                            <div class="vertiqal-party-role">Vendor</div>
+                            <div class="vertiqal-party-name">Premium Office Supplies Ltd</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="vertiqal-actions-section">
+                <a href="#" class="vertiqal-btn-outline">
+                    <i class="far fa-edit"></i>
+                    Sign Contract
+                </a>
+                <a href="#" class="vertiqal-btn-primary">
+                    <i class="fas fa-download"></i>
+                    Download Contract (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    
+    
+    </body>
+</html>
