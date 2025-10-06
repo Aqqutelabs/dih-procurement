@@ -26,7 +26,7 @@
                 <div class="col-6 text-right">
                     <div class="d-none d-md-inline-block">
                         <a href="{{ url('login') }}" class="btn vertiqal-btn-outline">Log In</a>
-                        <a href="register.html" class="btn vertiqal-btn-primary btn-border">Register</a>
+                        <a href="{{ url('register') }}" class="btn vertiqal-btn-primary btn-border">Register</a>
                     </div>
                     <div class="d-md-none">
                         <button class="btn vertiqal-btn-primary btn-sm">Login</button>

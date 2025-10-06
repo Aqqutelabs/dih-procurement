@@ -76,7 +76,11 @@
                     <p>johndoe12@gmail.com</p>
                 </div>
             </div>
-            <a href="#" class="vertiqal-logout-btn">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <a href="#" class="vertiqal-logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
                 Log Out
             </a>
@@ -105,7 +109,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/dashboard.js"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     
     
     </body>
