@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertiqal | @yield('bartitle')</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+</head>
+<body class="vertiqal-body">
+    <!-- Sidebar -->
+    <div class="vertiqal-sidebar">
+        <div class="vertiqal-logo">
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('assets/img/logo.png') }}" height="40" alt="Logo">
+            </div>
+        </div>
+
+        <div class="vertiqal-nav-section">MAIN</div>
+        <ul class="vertiqal-nav">
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('dashboard') }}" class="vertiqal-nav-link active">
+                    <i class="fas fa-th-large vertiqal-nav-icon"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('tenders') }}" class="vertiqal-nav-link ">
+                    <i class="fas fa-file-alt vertiqal-nav-icon"></i>
+                    Tenders
+                </a>
+            </li>
+            <li class="vertiqal-nav-item" >
+                <a href="{{ url('tenders') }}" class="vertiqal-nav-link ">
+                    <i class="fas fa-chart-line vertiqal-nav-icon"></i>
+                    Bids
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('contracts') }}" class="vertiqal-nav-link ">
+                    <i class="fas fa-handshake vertiqal-nav-icon"></i>
+                    Contracts & POs
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="#" class="vertiqal-nav-link">
+                    <i class="fas fa-shield-alt vertiqal-nav-icon"></i>
+                    Compliance
+                    <button class="vertiqal-compliance-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </a>
+                <div class="vertiqal-compliance-submenu" style="display: none">
+                    <a href="#">AFCTA</a>
+                    <a href="#">EU</a>
+                    <a href="#">US</a>
+                    <a href="#">China</a>
+                    <a href="#">LATAM</a>
+                    <a href="#">MENA</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="vertiqal-user-section">
+            <div class="vertiqal-user-info">
+                <div class="vertiqal-user-avatar"></div>
+                <div class="vertiqal-user-details">
+                    <h6>John Doe</h6>
+                    <p>johndoe12@gmail.com</p>
+                </div>
+            </div>
+            <a href="#" class="vertiqal-logout-btn">
+                <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
+                Log Out
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="vertiqal-main-content">
+        <!-- Header -->
+        <div class="vertiqal-header">
+            <div>
+                <h1 class="vertiqal-welcome-title">@yield('title')</h1>
+                <p class="vertiqal-welcome-subtitle">@yield('subtitle')</p>
+            </div>
+            <div class="vertiqal-header-actions">
+                <button class="vertiqal-notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <div class="vertiqal-notification-badge"></div>
+                </button>
+                <div class="vertiqal-user-menu"></div>
+            </div>
+        </div>
+
+        @yield('content')
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    
+    
+    </body>
+</html>
