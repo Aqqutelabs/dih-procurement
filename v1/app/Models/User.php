@@ -49,4 +49,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function tenders()
+    {
+        return $this->hasMany(Tender::class);
+    }
 }
