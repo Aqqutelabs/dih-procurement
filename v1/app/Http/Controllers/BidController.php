@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bid;
+use App\Models\Category;
+use App\Models\Tender;
 use Illuminate\Http\Request;
 
 class BidController extends Controller
@@ -12,7 +14,10 @@ class BidController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        $tenders = Tender::all();
+        $bids = Bid::with('category', 'tender')->get();
+        return view('bids', compact('bids', 'categories', 'tenders'));
     }
 
     /**

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vertiqal Dashboard</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/dashboard.css?v=2.3">
-    
+
 </head>
 <body class="vertiqal-body">
     <!-- Sidebar -->
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="container">
             <!-- Search Bar -->
             <div class="row">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Filters -->
             <div class="row">
                 <div class="col-12">
@@ -181,11 +181,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Tender Cards -->
             <div class="row">
                 <div class="col-12">
                     <!-- Card 1 -->
+                    @foreach ($tenders as $tender)
                     <div class="vertiqal-card">
                         <div class="vertiqal-card-body">
                             <div class="row align-items-center">
@@ -194,9 +195,10 @@
                                         <i class="fas fa-tractor"></i>
                                     </div>
                                 </div>
+
                                 <div class="col">
-                                    <h3 class="vertiqal-title">Farm Equipment Lease</h3>
-                                    <p class="vertiqal-description">Tractors and harvesting equipment for seasonal lease.</p>
+                                    <h3 class="vertiqal-title">{{ $tender->title }}</h3>
+                                    <p class="vertiqal-description">{{ $tender->description }}.</p>
                                     <div class="vertiqal-meta">
                                         <div class="vertiqal-meta-item">
                                             <i class="fas fa-building"></i>
@@ -208,17 +210,18 @@
                                         </div>
                                         <div class="vertiqal-meta-item">
                                             <i class="fas fa-boxes"></i>
-                                            <span>5 units</span>
+                                            <span>{{ $tender->unit }}</span>
                                         </div>
                                         <div class="vertiqal-meta-item">
                                             <i class="fas fa-calendar-alt"></i>
-                                            <span>30 June 2025</span>
+                                            <span>{{ $tender->bip_deadline }}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="vertiqal-tag">Equipment</div>
                                     </div>
                                 </div>
+
                                 <div class="col-auto">
                                     <a href="view_tender.php" class="vertiqal-btn-open">Open</a>
                                     <div class="d-flex">
@@ -228,9 +231,10 @@
                             </div>
                         </div>
                     </div>
-                    
+                    @endforeach
+
                     <!-- Card 2 -->
-                    <div class="vertiqal-card">
+                    {{-- <div class="vertiqal-card">
                         <div class="vertiqal-card-body">
                             <div class="row align-items-center">
                                 <div class="col-auto">
@@ -271,10 +275,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div> --}}
+
                     <!-- Card 3 -->
-                    <div class="vertiqal-card">
+                    {{-- <div class="vertiqal-card">
                         <div class="vertiqal-card-body">
                             <div class="row align-items-center">
                                 <div class="col-auto">
@@ -315,7 +319,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -326,7 +330,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/dashboard.js"></script>
-    
-    
+
+
     </body>
 </html>

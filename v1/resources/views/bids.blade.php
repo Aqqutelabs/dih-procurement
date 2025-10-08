@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vertiqal Dashboard</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/dashboard.css?v=2.3">
-    
+
 </head>
 <body class="vertiqal-body">
     <!-- Sidebar -->
@@ -175,7 +175,39 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($bids as $bid)
                     <tr>
+                        <td class="vertiqal-tender-title">{{ $bid->tender->title }}</td>
+                        <td class="vertiqal-buyer-name">{{ $bid->buyer_name }}</td>
+                        <td><span class="vertiqal-category-badge">{{ $bid->category->name }}</span></td>
+                        <td class="vertiqal-amount">{{ $bid->amount }}</td>
+                        <td class="vertiqal-location">{{ $bid->delivery_location }}</td>
+                        <td><span class="badge vertiqal-status-badge vertiqal-status-review">{{ $bid->status }}</span></td>
+                        <td class="vertiqal-date">{{ $bid->created_at }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn vertiqal-actions-dropdown" type="button" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu vertiqal-actions-menu">
+                                    <a class="dropdown-item vertiqal-edit-action" href="#">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item vertiqal-message-action" href="#">
+                                        <i class="fas fa-envelope"></i> Message
+                                    </a>
+                                    <a class="dropdown-item vertiqal-upload-action" href="#">
+                                        <i class="fas fa-upload"></i> Upload Docs
+                                    </a>
+                                    <a class="dropdown-item vertiqal-delete-action" href="#">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    {{-- <tr>
                         <td class="vertiqal-tender-title">Supply of Dry Maize</td>
                         <td class="vertiqal-buyer-name">Agro Foods Ltd</td>
                         <td><span class="vertiqal-category-badge">Grains</span></td>
@@ -255,36 +287,6 @@
                                     <a class="dropdown-item vertiqal-message-action" href="#">
                                         <i class="fas fa-envelope"></i> Message
                                     </a>
-                                    <a class="dropdown-item vertiqal-upload-action" href="#">
-                                        <i class="fas fa-upload"></i> Upload Docs
-                                    </a>
-                                    <a class="dropdown-item vertiqal-delete-action" href="#">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="vertiqal-tender-title">Supply of Dry Maize</td>
-                        <td class="vertiqal-buyer-name">Agro Foods Ltd</td>
-                        <td><span class="vertiqal-category-badge">Grains</span></td>
-                        <td class="vertiqal-amount">₦3,500,000</td>
-                        <td class="vertiqal-location">Kano</td>
-                        <td><span class="badge vertiqal-status-badge vertiqal-status-review">Under Review</span></td>
-                        <td class="vertiqal-date">15 Jul 2025</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn vertiqal-actions-dropdown" type="button" data-toggle="dropdown">
-                                    <i class="fas fa-ellipsis-h"></i>
-                                </button>
-                                <div class="dropdown-menu vertiqal-actions-menu">
-                                    <a class="dropdown-item vertiqal-edit-action" href="#">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <a class="dropdown-item vertiqal-message-action" href="#">
-                                        <i class="fas fa-envelope"></i> Message
-                                    </a>
                                     <a class="dropdown-item vertiqal-message-action" href="#">
                                         <i class="fas fa-envelope"></i> Message
                                     </a>
@@ -297,7 +299,7 @@
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -312,18 +314,18 @@
             $('.vertiqal-nav-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 console.log('Tab switched to: ' + $(e.target).text());
             });
-            
+
             $('.vertiqal-search-input').on('input', function() {
                 const searchTerm = $(this).val().toLowerCase();
                 console.log('Searching for: ' + searchTerm);
             });
-            
+
             $('.vertiqal-filter-select').on('change', function() {
                 const filterType = $(this).find('option:first').text();
                 const selectedValue = $(this).val();
                 console.log('Filter changed - ' + filterType + ': ' + selectedValue);
             });
-            
+
             $('.vertiqal-actions-menu .dropdown-item').on('click', function(e) {
                 e.preventDefault();
                 const action = $(this).text().trim();
@@ -331,7 +333,7 @@
             });
         });
     </script>
-    
-    
+
+
     </body>
 </html>

@@ -19,15 +19,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+});
+
     // Buyer
     Route::middleware(['role:buyer'])->group(function () {
         Route::resource('tenders', TenderController::class);
     });
 
-    Route::resource('products', ProductController::class);
-    Route::resource('products', BidController::class);
+    // Vendor
+    Route::middleware(['role:vendor'])->group(function () {
+        Route::resource('tenders', TenderController::class);
+    });
 
-});
+    Route::resource('products', ProductController::class);
+    Route::resource('bids', BidController::class);
 
 
 require __DIR__.'/auth.php';

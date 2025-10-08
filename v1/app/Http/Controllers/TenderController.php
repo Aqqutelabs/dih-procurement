@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TenderRequest;
 use App\Models\Tender;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class TenderController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Tender::class, 'tender');
-    }
+    use AuthorizesRequests;
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Tender::class, 'tender');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -33,7 +35,7 @@ class TenderController extends Controller
 
         $tenders = Tender::latest()->paginate(10);
 
-        return view('tenders.index', compact('tenders'));
+        return view('tenders', compact('tenders'));
     }
 
     /**
@@ -83,7 +85,7 @@ class TenderController extends Controller
      */
     public function update(TenderRequest $request, Tender $tender)
     {
-        //$this->authorize('update', $tender);
+        $this->authorize('update', $tender);
 
         $tender->update($request->validated());
 
@@ -95,7 +97,7 @@ class TenderController extends Controller
      */
     public function destroy(Tender $tender)
     {
-        //$this->authorize('delete', $tender);
+        $this->authorize('delete', $tender);
 
         $tender->delete();
 
