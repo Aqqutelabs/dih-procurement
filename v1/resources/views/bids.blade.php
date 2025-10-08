@@ -1,7 +1,7 @@
 @extends('layouts.master')
-@section('bartitle', 'Name for titlebar')
-@section('title', "Title name of page")
-@section('subtitle', 'Sub-title for page')
+@section('bartitle', 'Bid Management')
+@section('title', "Bid Management")
+@section('subtitle', 'Monitor your bid submissions and track their progress')
 @section('content')
 <!-- paste your code in between -->
 <div class="vertiqal-dashboard-content">

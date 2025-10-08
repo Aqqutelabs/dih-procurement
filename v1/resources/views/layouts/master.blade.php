@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="vertiqal-nav-item">
-                <a href="{{ url('tenders') }}" class="vertiqal-nav-link {{ Request::is('tenders') ? 'active' : '' }}">
+                <a href="{{ url('tenders') }}" class="vertiqal-nav-link {{ Request::is('tenders') || Request::is('view_tender') ? 'active' : '' }}">
                     <i class="fas fa-file-alt vertiqal-nav-icon"></i>
                     Tenders
                 </a>
@@ -98,7 +98,7 @@
     <!-- Main Content -->
     <div class="vertiqal-main-content">
         
-        @if (!Request::is('view_tender') && !Request::is('add_bid'))
+        @if (!Request::is('view_tender') && !Request::is('add_bid') && !Request::is('bids') )
         <!-- Header -->
         <div class="vertiqal-header">
             <div>
