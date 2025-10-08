@@ -39,8 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/contracts', function () {
         return view('contracts');
     });
-
 });
+
+
 
     // Buyer
     Route::middleware(['role:buyer'])->group(function () {
@@ -55,5 +56,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('bids', BidController::class);
 
+    require __DIR__ . '/auth.php';
 
-require __DIR__.'/auth.php';
