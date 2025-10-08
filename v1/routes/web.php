@@ -19,6 +19,27 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    Route::get('/tenders', function () {
+        return view('tenders');
+    });
+
+    Route::get('/bids', function () {
+        return view('bids');
+    });
+
+    Route::get('/add_bid', function () {
+        return view('add_bid');
+    });
+
+    Route::get('/view_tender', function () {
+        return view('view_tender');
+    });
+
+    Route::get('/contracts', function () {
+        return view('contracts');
+    });
+
 });
 
     // Buyer
