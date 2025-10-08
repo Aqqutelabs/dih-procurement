@@ -23,7 +23,7 @@
     <div class="vertiqal-sidebar">
         <div class="vertiqal-logo">
             <div class="d-flex align-items-center">
-                <img src="{{ asset('assets/img/logo.png') }}" height="40" alt="Logo">
+                <img src="{{ asset('assets/img/logo/transparent.png') }}" style="height: 60px">
             </div>
         </div>
 

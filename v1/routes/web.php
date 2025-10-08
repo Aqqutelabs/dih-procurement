@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contracts', function () {
         return view('contracts');
     });
+    
 });
 
 require __DIR__.'/auth.php';

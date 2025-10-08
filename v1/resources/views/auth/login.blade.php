@@ -23,7 +23,7 @@
         <div class="vertiqal-sidebar">
             <div class="w-100 pl-3">
                 <a href="#" class="vertiqal-logo">
-                    <img src="{{ asset('assets/img/logo.png') }}">
+                    <img src="{{ asset('assets/img/logo/transparent.png') }}" style="height: 60px">
                 </a>
             </div>
 
