@@ -1,19 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vertiqal | @yield('bartitle')</title>
-    
+
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 </head>
+
 <body class="vertiqal-body">
     <!-- Sidebar -->
     <div class="vertiqal-sidebar">
@@ -26,25 +30,27 @@
         <div class="vertiqal-nav-section">MAIN</div>
         <ul class="vertiqal-nav">
             <li class="vertiqal-nav-item">
-                <a href="{{ url('dashboard') }}" class="vertiqal-nav-link active">
+                <a href="{{ url('dashboard') }}"
+                    class="vertiqal-nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                     <i class="fas fa-th-large vertiqal-nav-icon"></i>
                     Dashboard
                 </a>
             </li>
             <li class="vertiqal-nav-item">
-                <a href="{{ url('tenders') }}" class="vertiqal-nav-link ">
+                <a href="{{ url('tenders') }}" class="vertiqal-nav-link {{ Request::is('tenders') ? 'active' : '' }}">
                     <i class="fas fa-file-alt vertiqal-nav-icon"></i>
                     Tenders
                 </a>
             </li>
-            <li class="vertiqal-nav-item" >
-                <a href="{{ url('tenders') }}" class="vertiqal-nav-link ">
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('bids') }}" class="vertiqal-nav-link {{ Request::is('bids') || Request::is('add_bid') ? 'active' : '' }}">
                     <i class="fas fa-chart-line vertiqal-nav-icon"></i>
                     Bids
                 </a>
             </li>
             <li class="vertiqal-nav-item">
-                <a href="{{ url('contracts') }}" class="vertiqal-nav-link ">
+                <a href="{{ url('contracts') }}"
+                    class="vertiqal-nav-link {{ Request::is('contracts') ? 'active' : '' }}">
                     <i class="fas fa-handshake vertiqal-nav-icon"></i>
                     Contracts & POs
                 </a>
@@ -53,20 +59,21 @@
                 <a href="#" class="vertiqal-nav-link">
                     <i class="fas fa-shield-alt vertiqal-nav-icon"></i>
                     Compliance
-                    <button class="vertiqal-compliance-toggle">
+                    <button type="button" class="vertiqal-compliance-toggle">
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </a>
                 <div class="vertiqal-compliance-submenu" style="display: none">
-                    <a href="#">AFCTA</a>
-                    <a href="#">EU</a>
-                    <a href="#">US</a>
-                    <a href="#">China</a>
-                    <a href="#">LATAM</a>
-                    <a href="#">MENA</a>
+                    <a href="#" class="{{ Request::is('compliance/afcta') ? 'active' : '' }}">AFCTA</a>
+                    <a href="#" class="{{ Request::is('compliance/eu') ? 'active' : '' }}">EU</a>
+                    <a href="#" class="{{ Request::is('compliance/us') ? 'active' : '' }}">US</a>
+                    <a href="#" class="{{ Request::is('compliance/china') ? 'active' : '' }}">China</a>
+                    <a href="#" class="{{ Request::is('compliance/latam') ? 'active' : '' }}">LATAM</a>
+                    <a href="#" class="{{ Request::is('compliance/mena') ? 'active' : '' }}">MENA</a>
                 </div>
             </li>
         </ul>
+
 
         <div class="vertiqal-user-section">
             <div class="vertiqal-user-info">
@@ -80,7 +87,8 @@
                 @csrf
             </form>
 
-            <a href="#" class="vertiqal-logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#" class="vertiqal-logout-btn"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
                 Log Out
             </a>
@@ -89,6 +97,8 @@
 
     <!-- Main Content -->
     <div class="vertiqal-main-content">
+        
+        @if (!Request::is('view_tender') && !Request::is('add_bid'))
         <!-- Header -->
         <div class="vertiqal-header">
             <div>
@@ -103,6 +113,7 @@
                 <div class="vertiqal-user-menu"></div>
             </div>
         </div>
+        @endif
 
         @yield('content')
     </div>
@@ -110,7 +121,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    
-    
-    </body>
+
+
+</body>
+
 </html>
