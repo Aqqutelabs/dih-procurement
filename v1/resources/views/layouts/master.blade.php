@@ -97,7 +97,7 @@
 
     <!-- Main Content -->
     <div class="vertiqal-main-content">
-        
+
         @if (!Request::is('view_tender') && !Request::is('add_bid') && !Request::is('bids') )
         <!-- Header -->
         <div class="vertiqal-header">
