@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BidRequest;
 use App\Models\Bid;
 use App\Models\Category;
 use App\Models\Tender;
@@ -31,19 +32,36 @@ class BidController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BidRequest $request)
     {
         $user = auth()->user();
 
+        // Handle document uploads
+        $documentPaths = [];
+        if ($request->hasFile('document')) {
+            foreach ($request->file('document') as $file) {
+                $path = $file->store('documents', 'public');
+                $documentPaths[] = $path;
+            }
+        }
+
         $bid = Bid::create([
-            $request->validated(),
-            'user_id' => $user->id
+            ...$request->validated(),
+            'user_id' => $user->id,
+            'document' => $documentPaths
         ]);
 
-        return redirect()->route('bids.index')->with(
-            'success',
-            'Bid created successfully',
-        );
+        // return redirect()->route('bids.index')->with(
+        //     'success',
+        //     'Bid created successfully',
+        // );
+
+        return redirect()->back()->with('bid_success', [
+            'title' => 'Congratulations',
+            'message' => 'Your Bid for "' . $request->tender_title . '" has been successfully submitted.',
+            'bid_id' => $bid->id,
+            'tender_title' => $request->tender_title
+        ]);
     }
 
     /**
@@ -51,7 +69,7 @@ class BidController extends Controller
      */
     public function show(Bid $bid)
     {
-       return view('bids.show', compact('bid'));
+        return view('bids.show', compact('bid'));
     }
 
     /**

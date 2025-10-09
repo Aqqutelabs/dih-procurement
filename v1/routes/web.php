@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/add_bid', function () {
         return view('add_bid');
-    });
+    })->middleware('role:vendor');
 
     Route::get('/view_tender', function () {
         return view('view_tender');
