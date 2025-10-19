@@ -13,6 +13,127 @@
             </button>
         </div>
 
+        <div class="modal fade" id="cncMachineModal" tabindex="-1" role="dialog" aria-labelledby="cncMachineModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cncMachineModalLabel">Industrial CNC Machine</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="position: relative;">
+                                    <img src="{{ asset('assets/img/worker.jpg') }}" 
+                                        alt="CNC Machine" class="product-image">
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i> Verified Vendor
+                                    </div>
+                                </div>
+                                
+                                <!-- Vendor Information -->
+                                <div class="vendor-box">
+                                    <div class="vendor-name">
+                                        TechMach Industries
+                                        <span class="rating ml-2">
+                                            <i class="fas fa-star"></i> 4.7
+                                        </span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Corporate Tech Solutions • Austin, USA
+                                    </div>
+                                    <p class="mb-2 mt-3">Leading manufacturer of industrial machinery</p>
+                                    <div>
+                                        <span class="certification-badge">ISO 9001</span>
+                                        <span class="certification-badge">CE Certified</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Specifications -->
+                                <div class="section-title">Specifications</div>
+                                <div>
+                                    <div class="spec-row">
+                                        <span>Power:</span>
+                                        <strong>15kW</strong>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span>Precision:</span>
+                                        <strong>±0.01mm</strong>
+                                    </div>
+                                    <div class="spec-row">
+                                        <span>Work Area:</span>
+                                        <strong>1000×600×400mm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <span class="category-badge">Machinery</span>
+                                <p class="text-muted">High-precision CNC machine for manufacturing operations</p>
+                                
+                                <div class="info-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Corporate Tech Solutions • Austin, USA
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-box"></i>
+                                    Unit: Each
+                                </div>
+                                <div class="info-item">
+                                    <i class="far fa-clock"></i>
+                                    Lead Time: 4-6 weeks
+                                </div>
+                                
+                                <!-- Pricing -->
+                                <div class="section-title">Pricing</div>
+                                <div class="price-tag">$25,000 - $35,000</div>
+                                <p class="text-muted">per Each</p>
+                                <p class="text-muted">MOQ: 1 Each</p>
+                                
+                                <!-- Availability and Reviews -->
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="section-title">Availability</div>
+                                        <div class="stock-badge">5 in stock</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="section-title">Customer Reviews</div>
+                                        <div>
+                                            <span class="rating">
+                                                <i class="fas fa-star"></i> 4.7
+                                            </span>
+                                            <span class="text-muted"> (156 reviews)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="mt-4">
+                                    <button class="btn btn-primary-custom">
+                                        Add to Requisition
+                                    </button>
+                                    <div class="btn-group-custom">
+                                        <button class="btn btn-outline-custom">
+                                            <i class="far fa-heart"></i> Save to Favourite
+                                        </button>
+                                        <button class="btn btn-outline-custom">
+                                            <i class="far fa-comment-dots"></i> Contact Vendor
+                                        </button>
+                                    </div>
+                                    <button class="btn btn-secondary-custom">
+                                        Request Quotation
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs border-bottom mb-4" id="tenderTabs" role="tablist">
             <li class="nav-item">
@@ -105,7 +226,7 @@
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right"
                                             aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cncMachineModal">
                                                 <i class="far fa-eye mr-2"></i> View
                                             </a>
                                             <a class="dropdown-item" href="#">
@@ -217,7 +338,7 @@
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right"
                                             aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cncMachineModal">
                                                 <i class="far fa-eye mr-2"></i> View
                                             </a>
                                             <a class="dropdown-item" href="#">
@@ -283,6 +404,145 @@
             .form-control:focus {
                 box-shadow: none;
                 border-color: #ced4da;
+            }
+
+            .product-image {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+                border-radius: 8px;
+                position: relative;
+            }
+            
+            .verified-badge {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(25, 58, 94, 0.9);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+            }
+            
+            .vendor-box {
+                background: #f8f9fa;
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+            
+            .vendor-name {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            
+            .rating {
+                color: #ffc107;
+            }
+            
+            .certification-badge {
+                display: inline-block;
+                background: white;
+                border: 1px solid #dee2e6;
+                padding: 4px 12px;
+                border-radius: 4px;
+                font-size: 12px;
+                margin-right: 8px;
+                margin-top: 8px;
+            }
+            
+            .spec-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 0;
+                border-bottom: 1px solid #e9ecef;
+            }
+            
+            .spec-row:last-child {
+                border-bottom: none;
+            }
+            
+            .price-tag {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #212529;
+                margin-bottom: 0.5rem;
+            }
+            
+            .info-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0.75rem;
+                color: #6c757d;
+            }
+            
+            .info-item i {
+                margin-right: 10px;
+                width: 20px;
+            }
+            
+            .stock-badge {
+                color: #004085;
+                font-weight: 600;
+                font-size: 1.1rem;
+            }
+            
+            .btn-primary-custom {
+                background: #193a5e;
+                border: none;
+                padding: 12px;
+                font-weight: 600;
+                border-radius: 6px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .btn-primary-custom:hover {
+                background: #0f2540;
+            }
+            
+            .btn-outline-custom {
+                border: 1px solid #dee2e6;
+                background: white;
+                color: #495057;
+                padding: 12px;
+                border-radius: 6px;
+                width: 48%;
+                margin-bottom: 10px;
+            }
+            
+            .btn-secondary-custom {
+                background: #7589a3;
+                border: none;
+                padding: 12px;
+                color: white;
+                font-weight: 600;
+                border-radius: 6px;
+                width: 100%;
+            }
+            
+            .btn-group-custom {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+            
+            .category-badge {
+                background: #e9ecef;
+                padding: 4px 12px;
+                border-radius: 4px;
+                font-size: 14px;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+            
+            .section-title {
+                font-weight: 600;
+                font-size: 1.1rem;
+                margin-top: 1.5rem;
+                margin-bottom: 1rem;
             }
         </style>
     </div>
