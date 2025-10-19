@@ -11,7 +11,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if(auth()->user()->role == 'buyer'){
+        return view('buyers.dashboard');
+    }else{
+        return view('dashboard');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -19,43 +23,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
-    Route::get('/tenders', function () {
-        return view('tenders');
-    });
-
-    Route::get('/bids', function () {
-        return view('bids');
-    });
-
-    Route::get('/add_bid', function () {
-        return view('add_bid');
-    })->middleware('role:vendor');
-
-    Route::get('/view_tender', function () {
-        return view('view_tender');
-    });
-
-    Route::get('/contracts', function () {
-        return view('contracts');
-    });
-    
-});
-
-
-
     // Buyer
     Route::middleware(['role:buyer'])->group(function () {
-        Route::resource('tenders', TenderController::class);
+        Route::get('/buyer/tenders', [TenderController::class, 'buyer_view'])->name('buyer.tenders');
     });
 
     // Vendor
     Route::middleware(['role:vendor'])->group(function () {
         Route::resource('tenders', TenderController::class);
+
+        Route::get('/contracts', function () {
+            return view('contracts');
+        });
+
+        Route::resource('products', ProductController::class);
+        Route::resource('bids', BidController::class);
     });
+    
+});
 
-    Route::resource('products', ProductController::class);
-    Route::resource('bids', BidController::class);
-
-    require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
 

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+    @yield('local_css')
 </head>
 
 <body class="vertiqal-body">
@@ -28,6 +29,7 @@
         </div>
 
         <div class="vertiqal-nav-section">MAIN</div>
+        @if(auth()->user()->role == 'buyer')
         <ul class="vertiqal-nav">
             <li class="vertiqal-nav-item">
                 <a href="{{ url('dashboard') }}"
@@ -37,13 +39,13 @@
                 </a>
             </li>
             <li class="vertiqal-nav-item">
-                <a href="{{ url('tenders') }}" class="vertiqal-nav-link {{ Request::is('tenders') || Request::is('view_tender') ? 'active' : '' }}">
+                <a href="{{ route('buyer.tenders') }}" class="vertiqal-nav-link {{ Route::is('buyer.tenders') ? 'active' : '' }}">
                     <i class="fas fa-file-alt vertiqal-nav-icon"></i>
                     Tenders
                 </a>
             </li>
             <li class="vertiqal-nav-item">
-                <a href="{{ url('bids') }}" class="vertiqal-nav-link {{ Request::is('bids') || Request::is('add_bid') ? 'active' : '' }}">
+                <a href="{{ url('bids') }}" class="vertiqal-nav-link {{ Request::is('bids') || Request::is('bids/create') ? 'active' : '' }}">
                     <i class="fas fa-chart-line vertiqal-nav-icon"></i>
                     Bids
                 </a>
@@ -73,14 +75,60 @@
                 </div>
             </li>
         </ul>
-
+        @else
+        <ul class="vertiqal-nav">
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('dashboard') }}"
+                    class="vertiqal-nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-th-large vertiqal-nav-icon"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('tenders') }}" class="vertiqal-nav-link {{ Request::is('tenders') || Request::is('view_tender') ? 'active' : '' }}">
+                    <i class="fas fa-file-alt vertiqal-nav-icon"></i>
+                    Tenders
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('bids') }}" class="vertiqal-nav-link {{ Request::is('bids') || Request::is('bids/create') ? 'active' : '' }}">
+                    <i class="fas fa-chart-line vertiqal-nav-icon"></i>
+                    Bids
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="{{ url('contracts') }}"
+                    class="vertiqal-nav-link {{ Request::is('contracts') ? 'active' : '' }}">
+                    <i class="fas fa-handshake vertiqal-nav-icon"></i>
+                    Contracts & POs
+                </a>
+            </li>
+            <li class="vertiqal-nav-item">
+                <a href="#" class="vertiqal-nav-link">
+                    <i class="fas fa-shield-alt vertiqal-nav-icon"></i>
+                    Compliance
+                    <button type="button" class="vertiqal-compliance-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </a>
+                <div class="vertiqal-compliance-submenu" style="display: none">
+                    <a href="#" class="{{ Request::is('compliance/afcta') ? 'active' : '' }}">AFCTA</a>
+                    <a href="#" class="{{ Request::is('compliance/eu') ? 'active' : '' }}">EU</a>
+                    <a href="#" class="{{ Request::is('compliance/us') ? 'active' : '' }}">US</a>
+                    <a href="#" class="{{ Request::is('compliance/china') ? 'active' : '' }}">China</a>
+                    <a href="#" class="{{ Request::is('compliance/latam') ? 'active' : '' }}">LATAM</a>
+                    <a href="#" class="{{ Request::is('compliance/mena') ? 'active' : '' }}">MENA</a>
+                </div>
+            </li>
+        </ul>
+        @endif
 
         <div class="vertiqal-user-section">
             <div class="vertiqal-user-info">
                 <div class="vertiqal-user-avatar"></div>
                 <div class="vertiqal-user-details">
-                    <h6>John Doe</h6>
-                    <p>johndoe12@gmail.com</p>
+                    <h6>{{ auth()->user()->name }}</h6>
+                    <p>{{ auth()->user()->email }}</p>
                 </div>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -98,7 +146,7 @@
     <!-- Main Content -->
     <div class="vertiqal-main-content">
 
-        @if (!Request::is('view_tender') && !Request::is('add_bid') && !Request::is('bids') )
+        @if (!Request::is('view_tender') && !Request::is('add_bid') && !Request::is('bids') && !Route::is('buyer.tenders'))
         <!-- Header -->
         <div class="vertiqal-header">
             <div>

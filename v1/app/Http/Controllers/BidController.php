@@ -18,12 +18,9 @@ class BidController extends Controller
         $categories = Category::all();
         $tenders = Tender::all();
         $bids = Bid::with('category', 'tender')->get();
-        return view('bids', compact('bids', 'categories', 'tenders'));
+        return view('bids.index', compact('bids', 'categories', 'tenders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('bids.create');

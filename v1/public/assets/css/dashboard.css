@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: 'inter';
+    font-family: "inter";
 }
 
 .vertiqal-body {
@@ -57,13 +57,21 @@ body {
 
 .vertiqal-nav {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    overflow-y: auto;
+    height: 350px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.vertiqal-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .vertiqal-nav-item {
     margin-bottom: 2px;
     padding-left: 10px;
+    list-style: none;
 }
 
 .vertiqal-nav-link {
@@ -128,6 +136,7 @@ body {
     right: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
+    background: var(--primary-color);
 }
 
 .vertiqal-user-info {
@@ -1182,7 +1191,8 @@ body {
     padding: 2rem;
     text-align: center;
     background-color: #f8f9fa;
-    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out;
     cursor: pointer;
 }
 
@@ -1549,240 +1559,240 @@ body {
 /* View contract & PO */
 /* ----------------- */
 .vertiqal-contract-header {
-            background-color: #f8f9fa;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #dee2e6;
-            margin-bottom: 0;
-        }
-        
-        .vertiqal-contract-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin: 0;
-        }
-        
-        .vertiqal-back-arrow {
-            color: #6c757d;
-            font-size: 1.2rem;
-            margin-right: 0.75rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        
-        .vertiqal-back-arrow:hover {
-            color: #495057;
-        }
-        
-        .vertiqal-status-badge {
-            background-color: #6c757d;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.375rem 0.75rem;
-            border-radius: 0.25rem;
-        }
-        
-        .vertiqal-main-box {
-            padding: 1.5rem;
-        }
-        
-        .vertiqal-overview-section {
-            background-color: white;
-            border: 1px solid #e9ecef;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .vertiqal-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .vertiqal-section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin: 0;
-        }
-        
-        .vertiqal-pending-badge {
-            background-color: #f8f9fa;
-            color: #6c757d;
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-        }
-        
-        .vertiqal-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem 2rem;
-        }
-        
-        .vertiqal-info-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .vertiqal-info-label {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-bottom: 0.25rem;
-        }
-        
-        .vertiqal-info-value {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .vertiqal-commodity-value {
-            color: #28a745;
-        }
-        
-        .vertiqal-price-value {
-            color: #007bff;
-        }
-        
-        .vertiqal-terms-box {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 0.375rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .vertiqal-terms-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 0.5rem;
-        }
-        
-        .vertiqal-terms-text {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin: 0;
-        }
-        
-        .vertiqal-parties-section {
-            background-color: white;
-            border: 1px solid #e9ecef;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .vertiqal-party-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .vertiqal-party-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .vertiqal-party-role {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-bottom: 0.25rem;
-        }
-        
-        .vertiqal-party-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .vertiqal-conditions-section {
-            background-color: white;
-            border: 1px solid #e9ecef;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .vertiqal-condition-item {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-bottom: 0.5rem;
-        }
-        
-        .vertiqal-condition-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .vertiqal-actions-section {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            padding-top: 1rem;
-        }
-        
-        .vertiqal-btn-outline {
-            border: 1px solid #dee2e6;
-            background-color: white;
-            color: #495057;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-        }
-        
-        .vertiqal-btn-outline:hover {
-            background-color: #f8f9fa;
-            border-color: #adb5bd;
-            color: #495057;
-            text-decoration: none;
-        }
-        
-        .vertiqal-btn-primary {
-            background-color: #1e3a5f;
-            color: white;
-            border: 1px solid #1e3a5f;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-        }
-        
-        .vertiqal-btn-primary:hover {
-            background-color: #16324d;
-            border-color: #16324d;
-            color: white;
-            text-decoration: none;
-        }
-        
-        @media (max-width: 768px) {
-            .vertiqal-info-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .vertiqal-actions-section {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .vertiqal-contract-header {
-                padding: 0.75rem 1rem;
-            }
-            
-            .vertiqal-main-box {
-                padding: 1rem;
-            }
-        }
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 0;
+}
+
+.vertiqal-contract-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.vertiqal-back-arrow {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.vertiqal-back-arrow:hover {
+    color: #495057;
+}
+
+.vertiqal-status-badge {
+    background-color: #6c757d;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+}
+
+.vertiqal-main-box {
+    padding: 1.5rem;
+}
+
+.vertiqal-overview-section {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.vertiqal-pending-badge {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.vertiqal-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+}
+
+.vertiqal-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.vertiqal-info-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.vertiqal-info-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.vertiqal-commodity-value {
+    color: #28a745;
+}
+
+.vertiqal-price-value {
+    color: #007bff;
+}
+
+.vertiqal-terms-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+.vertiqal-terms-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.vertiqal-terms-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.vertiqal-parties-section {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-party-item {
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-party-item:last-child {
+    margin-bottom: 0;
+}
+
+.vertiqal-party-role {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.vertiqal-party-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.vertiqal-conditions-section {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.vertiqal-condition-item {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.vertiqal-condition-item:last-child {
+    margin-bottom: 0;
+}
+
+.vertiqal-actions-section {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.vertiqal-btn-outline {
+    border: 1px solid #dee2e6;
+    background-color: white;
+    color: #495057;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.vertiqal-btn-outline:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+    color: #495057;
+    text-decoration: none;
+}
+
+.vertiqal-btn-primary {
+    background-color: #1e3a5f;
+    color: white;
+    border: 1px solid #1e3a5f;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.vertiqal-btn-primary:hover {
+    background-color: #16324d;
+    border-color: #16324d;
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .vertiqal-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .vertiqal-actions-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .vertiqal-contract-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .vertiqal-main-box {
+        padding: 1rem;
+    }
+}

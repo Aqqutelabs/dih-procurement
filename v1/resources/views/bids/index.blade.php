@@ -10,7 +10,7 @@
             <h1 class="vertiqal-bid-title">Bid Management</h1>
             <p class="vertiqal-bid-subtitle">Monitor your bid submissions and track their progress</p>
         </div>
-        <a href="{{ url('add_bid') }}" class="btn btn-primary vertiqal-add-btn">
+        <a href="{{ url('bids/create') }}" class="btn btn-primary vertiqal-add-btn">
             <i class="fas fa-plus mr-2"></i>Add New Bids
         </a>
     </div>

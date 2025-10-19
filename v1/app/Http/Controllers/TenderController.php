@@ -18,6 +18,7 @@ class TenderController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
         $today = now();
@@ -36,6 +37,10 @@ class TenderController extends Controller
         $tenders = Tender::latest()->paginate(10);
 
         return view('tenders', compact('tenders'));
+    }
+
+    public function buyer_view(Request $request){
+        return view('buyers.tenders');
     }
 
     /**
