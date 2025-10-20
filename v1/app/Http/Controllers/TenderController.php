@@ -57,6 +57,10 @@ class TenderController extends Controller
         return view('tenders', compact('tenders'));
     }
 
+    public function buyer_view(Request $request){
+        return view('buyers.tenders');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

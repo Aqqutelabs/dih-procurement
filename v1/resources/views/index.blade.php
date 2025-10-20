@@ -20,7 +20,7 @@
             <div class="row align-items-center">
                 <div class="col-6">
                     <a href="#" class="vertiqal-logo">
-                        <img src="{{ asset('assets/img/logo.png') }}">
+                        <img src="{{ asset('assets/img/logo/transparent.png') }}" style="height: 70px">
                     </a>
                 </div>
                 <div class="col-6 text-right">
