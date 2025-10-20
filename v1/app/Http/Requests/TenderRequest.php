@@ -31,6 +31,7 @@ class TenderRequest extends FormRequest
             'commodity_type' => ['nullable', 'string', 'max:255'],
             'currency' => ['required', 'string', 'max:10'],
             'quality_standard' => ['nullable', 'string', 'max:255'],
+            'delivery_location' => ['nullable', 'string', 'max:255'],
             'delivery_start_date' => ['required', 'date'],
             'delivery_end_date' => ['required', 'date', 'after_or_equal:delivery_start_date'],
             'publish_date' => ['nullable', 'date'],

@@ -35,6 +35,8 @@ class TenderSeeder extends Seeder
                 'timezone' => 'Africa/Lagos',
                 'document' => null,
                 'cross_border_tender' => true,
+                'tid' => 'TNDR-2025-001',
+                'delivery_location' => 'Abuja'
             ],
             [
                 'user_id' => 1,
@@ -56,6 +58,8 @@ class TenderSeeder extends Seeder
                 'timezone' => 'Africa/Lagos',
                 'document' => null,
                 'cross_border_tender' => false,
+                'tid' => 'TNDR-2025-002',
+                'delivery_location' => 'Lagos'
             ],
             [
                 'user_id' => 1,
@@ -77,6 +81,8 @@ class TenderSeeder extends Seeder
                 'timezone' => 'Africa/Lagos',
                 'document' => null,
                 'cross_border_tender' => true,
+                'tid' => 'TNDR-2025-003',
+                'delivery_location' => 'Kano'
             ],
         ];
 

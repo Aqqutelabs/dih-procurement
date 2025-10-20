@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TenderRequest;
+use App\Models\Bid;
 use App\Models\Tender;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -18,22 +19,40 @@ class TenderController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    // Vendors Tender
     public function index(Request $request)
     {
         $today = now();
-        $query = Tender::query();
+        $query = Tender::with('buyer');
 
-        if ($request->has('filter')) {
-            $filter = $request->filter;
+        if($request->filled('search')) {
+            $search = $request->input('search');
 
-            if ($filter === 'active') {
-                $query->whereDate('delivery_end_date', '>=', $today);
-            } else if ($filter = 'completed') {
-                $query->whereDate('delivery_end_date', '<', $today);
-            }
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('delivery_location', 'like', "%{$search}%")
+                    ->orWhereHas('buyer', function($buyerQ) use ($search){
+                        $buyerQ->where('name', 'like', "%{$search}%");
+                    });
+            });
         }
 
-        $tenders = Tender::latest()->paginate(10);
+        if($request->filled('location')) {
+            $query->where('delivery_location', $request->location);
+        }
+
+        // if ($request->has('filter')) {
+        //     $filter = $request->filter;
+
+        //     if ($filter === 'active') {
+        //         $query->whereDate('delivery_end_date', '>=', $today);
+        //     } else if ($filter = 'completed') {
+        //         $query->whereDate('delivery_end_date', '<', $today);
+        //     }
+        // }
+
+        $tenders = $query->latest()->paginate(10);
 
         return view('tenders', compact('tenders'));
     }
@@ -41,7 +60,7 @@ class TenderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('tenders.create');
     }
@@ -69,7 +88,8 @@ class TenderController extends Controller
      */
     public function show(Tender $tender)
     {
-        return view('tenders.show', compact('tender'));
+        $tender->load('buyer');
+        return view('view_tender', compact('tender'));
     }
 
     /**

@@ -21,7 +21,7 @@
             <div class="vertiqal-stats-card">
                 <div class="vertiqal-stat-label">Active Contracts</div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="vertiqal-stat-value">12</div>
+                    <div class="vertiqal-stat-value">{{ $contractCount }}</div>
                     <div class="vertiqal-stat-icon vertiqal-icon-green">
                         <i class="fas fa-check-circle"></i>
                     </div>
@@ -32,7 +32,7 @@
             <div class="vertiqal-stats-card">
                 <div class="vertiqal-stat-label">Total Contract Value</div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="vertiqal-stat-value">₦2.1M</div>
+                    <div class="vertiqal-stat-value">{{ $totalContractValue }}</div>
                     <div class="vertiqal-stat-icon vertiqal-icon-blue">
                         <i class="fas fa-naira-sign"></i>
                     </div>
@@ -43,7 +43,7 @@
             <div class="vertiqal-stats-card">
                 <div class="vertiqal-stat-label">Pending Actions</div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="vertiqal-stat-value">3</div>
+                    <div class="vertiqal-stat-value">{{ $pendingActions }}</div>
                     <div class="vertiqal-stat-icon vertiqal-icon-orange">
                         <i class="fas fa-clock"></i>
                     </div>
@@ -96,6 +96,9 @@
 
     <!-- Data Table -->
     <div class="vertiqal-table-container">
+        @if($contracts->isEmpty())
+        <p>No contracts available.</p>
+    @else
         <table class="table vertiqal-data-table">
             <thead class="vertiqal-table-header">
                 <tr>
@@ -109,16 +112,18 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($contracts as $contract)
                 <tr class="vertiqal-table-row">
                     <td class="vertiqal-contract-id">CNT-2025-001</td>
-                    <td class="vertiqal-vendor-name">Office Supplies P.</td>
+                    <td class="vertiqal-vendor-name">{{ $contract->vendor_name }}</td>
                     <td>Maize</td>
-                    <td class="vertiqal-amount">₦500,000</td>
-                    <td>15-09-2025</td>
-                    <td>20-09-2025</td>
-                    <td><span class="vertiqal-status-badge vertiqal-status-signed">Signed</span></td>
+                    <td class="vertiqal-amount">{{ $contract->bid->amount }}</td>
+                    <td>{{ $contract->bid->tender->delivery_start_date->format('d-m-y') }}</td>
+                    <td>{{ $contract->bid->tender->delivery_end_date->format('d-m-y') }}</td>
+                    <td><span class="vertiqal-status-badge vertiqal-status-signed">{{ $contract->status }}</span></td>
                 </tr>
-                <tr class="vertiqal-table-row">
+                @endforeach
+                {{-- <tr class="vertiqal-table-row">
                     <td class="vertiqal-contract-id">CNT-2025-001</td>
                     <td class="vertiqal-vendor-name">Office Supplies P.</td>
                     <td>Maize</td>
@@ -153,9 +158,10 @@
                     <td>15-09-2025</td>
                     <td>20-09-2025</td>
                     <td><span class="vertiqal-status-badge vertiqal-status-draft">Draft</span></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
+        @endif
 
         <!-- Pagination -->
         <div class="vertiqal-pagination-container">

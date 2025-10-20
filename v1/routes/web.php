@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BidController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TenderController;
@@ -52,9 +54,16 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:vendor'])->group(function () {
         Route::resource('tenders', TenderController::class);
     });
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('products', ProductController::class);
     Route::resource('bids', BidController::class);
+
+    Route::middleware(['role:buyer'])->group(function () {
+        Route::post('bid/status', [BidController::class, 'acceptBid'])->name('bid.accept');
+    });
+
+    Route::get('contracts', [ContractController::class, 'index'])->name('contract.index');
 
     require __DIR__ . '/auth.php';
 

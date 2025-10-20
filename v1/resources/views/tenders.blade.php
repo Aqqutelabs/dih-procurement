@@ -22,69 +22,75 @@
 
         <div class="container">
             <!-- Search Bar -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="vertiqal-search-bar">
-                        <div class="form-group mb-0">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white border-right-0">
-                                        <i class="fas fa-search text-muted"></i>
-                                    </span>
+            <form method="GET" action="{{ route('tenders.index') }}" style="display: block; width: 100%;">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="vertiqal-search-bar">
+                            <div class="form-group mb-0">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-white border-right-0">
+                                            <i class="fas fa-search text-muted"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control border-left-0" name="search"
+                                        value="{{ request('search') }}"
+                                        placeholder="Search by product name, buyers and location..."
+                                        style="border-left: none;">
                                 </div>
-                                <input type="text" class="form-control border-left-0"
-                                    placeholder="Search by product name, buyers and location..." style="border-left: none;">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <!-- Filters -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="vertiqal-filters">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
-                                <label class="font-weight-bold mb-2 text-muted">Category</label>
-                                <select class="form-control vertiqal-select">
-                                    <option>All Commodity</option>
-                                    <option>Equipment</option>
-                                    <option>Services</option>
-                                    <option>Materials</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
-                                <label class="font-weight-bold mb-2 text-muted">Location</label>
-                                <select class="form-control vertiqal-select">
-                                    <option>All Market</option>
-                                    <option>Kaduna</option>
-                                    <option>Lagos</option>
-                                    <option>Abuja</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
-                                <label class="font-weight-bold mb-2 text-muted">Status</label>
-                                <select class="form-control vertiqal-select">
-                                    <option>Name</option>
-                                    <option>Open</option>
-                                    <option>Closed</option>
-                                    <option>Pending</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <label class="font-weight-bold mb-2 text-muted">Sort by</label>
-                                <select class="form-control vertiqal-select">
-                                    <option>Name</option>
-                                    <option>Date</option>
-                                    <option>Status</option>
-                                    <option>Location</option>
-                                </select>
+            <form method="GET" action="{{ route('tenders.index') }}"">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="vertiqal-filters">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                                    <label class="font-weight-bold mb-2 text-muted">Category</label>
+                                    <select class="form-control vertiqal-select">
+                                        <option>All Commodity</option>
+                                        <option>Equipment</option>
+                                        <option>Services</option>
+                                        <option>Materials</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                                    <label class="font-weight-bold mb-2 text-muted">Location</label>
+                                    <select name="location" class="form-control vertiqal-select" onchange="this.form.submit()">
+                                        <option>All Market</option>
+                                        <option value="Kaduna" {{ request('location') == 'Kaduna' ? 'selected' : '' }}>Kaduna</option>
+                                        <option value="Lagos" {{ request('location') == 'Lagos' ? 'selected' : '' }}>Lagos</option>
+                                        <option value="Abuja" {{ request('location') == 'Abuja' ? 'selected' : '' }}>Abuja</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                                    <label class="font-weight-bold mb-2 text-muted">Status</label>
+                                    <select class="form-control vertiqal-select">
+                                        <option>Name</option>
+                                        <option>Open</option>
+                                        <option>Closed</option>
+                                        <option>Pending</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="font-weight-bold mb-2 text-muted">Sort by</label>
+                                    <select class="form-control vertiqal-select">
+                                        <option>Name</option>
+                                        <option>Date</option>
+                                        <option>Status</option>
+                                        <option>Location</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <!-- Tender Cards -->
             <div class="row">
@@ -105,19 +111,19 @@
                                         <div class="vertiqal-meta">
                                             <div class="vertiqal-meta-item">
                                                 <i class="fas fa-building"></i>
-                                                <span>Northern Agro Cooperative</span>
+                                                <span>{{ $tender->buyer->name }}</span>
                                             </div>
                                             <div class="vertiqal-meta-item">
                                                 <i class="fas fa-map-marker-alt"></i>
-                                                <span>Kaduna</span>
+                                                <span>{{ $tender->delivery_location }}</span>
                                             </div>
                                             <div class="vertiqal-meta-item">
                                                 <i class="fas fa-boxes"></i>
-                                                <span>{{ $tender->unit }}</span>
+                                                <span>{{ $tender->unit }} units</span>
                                             </div>
                                             <div class="vertiqal-meta-item">
                                                 <i class="fas fa-calendar-alt"></i>
-                                                <span>{{ $tender->bip_deadline }}</span>
+                                                <span>{{ $tender->bip_deadline->format('d M Y') }}</span>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
@@ -126,7 +132,8 @@
                                     </div>
 
                                     <div class="col-auto">
-                                        <a href="view_tender.php" class="vertiqal-btn-open">Open</a>
+                                        <a href="{{ route('tenders.show', $tender->id) }}"
+                                            class="vertiqal-btn-open">Open</a>
                                         <div class="d-flex">
                                             <button class="vertiqal-btn-details mt-5">View Details</button>
                                         </div>

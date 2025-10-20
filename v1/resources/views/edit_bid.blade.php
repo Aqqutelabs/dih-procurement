@@ -6,20 +6,21 @@
     <!-- paste your code in between -->
     <div class="vertiqal-dashboard-content">
         <div class="vertiqal-header-section">
-            <h1 class="vertiqal-main-title">Submit Your Bid</h1>
+            <h1 class="vertiqal-main-title">Edit Your Bid</h1>
             <p class="vertiqal-subtitle">Provide your quotation details, delivery terms, and supporting documents for this
                 tender.</p>
         </div>
 
-        <form id="vertiqal-bid-form" action="{{ route('bids.store') }}" method="POST" enctype="multipart/form-data">
+        <form id="vertiqal-bid-form" action="{{ route('bids.update', $bid->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <h2 class="vertiqal-form-section-title">Enter Your Offer</h2>
 
             <div class="vertiqal-tender-info-section mb-4">
                 <h3 class="h6 font-weight-bold text-muted mb-3">Tender Information</h3>
 
                 <div class="row">
-                    <input type="hidden" name="tender_id" value="{{ $tender->id }}">
+                    <input type="hidden" name="tender_id" value="{{ old('tender_id', $bid->tender->id) }}">
                     {{-- <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Tender Title</label>
@@ -29,14 +30,14 @@
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Tender Title</label>
-                            <input type="text" class="form-control vertiqal-form-control" value="{{ $tender->title }}" readonly>
+                            <input type="text" class="form-control vertiqal-form-control" value="{{ old('tender_title', $bid->tender->title) }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Buyer</label>
                             <input type="text" class="form-control vertiqal-form-control" name="buyer_name"
-                                placeholder="Buyer name will appear here" value="{{ $tender->buyer->name }}">
+                                placeholder="Buyer name will appear here" value="{{ old('buyer_name', $bid->tender->buyer->name) }}">
                                 @error('buyer_name')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -48,7 +49,7 @@
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Tender ID</label>
-                            <input type="text" class="form-control vertiqal-form-control" name="tender_tid" value="{{ $tender->tid }}" readonly>
+                            <input type="text" class="form-control vertiqal-form-control" name="tender_tid" value="{{ old('tender_tid', $bid->tender->tid) }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -57,9 +58,9 @@
                             <div class="vertiqal-select-wrapper">
                                 <select class="form-control vertiqal-form-control vertiqal-form-select" name="category_id">
                                     <option value="">Select Category</option>
-                                @foreach ($categories as $category)
+                                @foreach ($categories ?? [] as $category)
                                     <option value="{{ $category->id }}"
-                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ old('category_id', $bid->category_id ?? '') ===  $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -77,13 +78,12 @@
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Delivery Location</label>
                             <div class="vertiqal-select-wrapper">
-                                <select class="form-control vertiqal-form-control vertiqal-form-select" name="delivery_location"
-                                value="{{ old('delivery_location') }}">
+                                <select class="form-control vertiqal-form-control vertiqal-form-select" name="delivery_location">
                                     <option>Select Location</option>
-                                    <option value="lagos, nigeria">Lagos, Nigeria</option>
-                                    <option value="abuja, nigeria">Abuja, Nigeria</option>
-                                    <option value="port harcourt, nigeria">Port Harcourt, Nigeria</option>
-                                    <option value="kano, nigeria">Kano, Nigeria</option>
+                                    <option value="lagos, nigeria" {{ old('delivery_location', $bid->delivery_location ?? '') == 'lagos, nigeria' ? 'selected' : '' }}>Lagos, Nigeria</option>
+                                    <option value="abuja, nigeria" {{ old('delivery_location', $bid->delivery_location ?? '') == 'abuja, nigeria' ? 'selected' : '' }}>Abuja, Nigeria</option>
+                                    <option value="port harcourt, nigeria" {{ old('delivery_location', $bid->delivery_location ?? '') == 'port harcourt, nigeria' ? 'selected' : '' }}>Port Harcourt, Nigeria</option>
+                                    <option value="kano, nigeria" {{ old('delivery_location', $bid->delivery_location ?? '') == 'kano, nigeria' ? 'selected' : '' }}>Kano, Nigeria</option>
                                 </select>
                                 @error('delivery_location')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -97,7 +97,7 @@
                             <div class="vertiqal-currency-input">
                                 <span class="vertiqal-currency-symbol">₦</span>
                                 <input type="number" class="form-control vertiqal-form-control vertiqal-currency-field"
-                                    placeholder="2000" name="unit_price" value="{{ old('unit_price') }}">
+                                    placeholder="2000" name="unit_price" value="{{ old('unit_price', $bid->unit_price) }}">
                             </div>
                             @error('unit_price')
                                 <div class="text-danger">{{ $message }}</div>
@@ -113,10 +113,10 @@
                             <div class="vertiqal-select-wrapper">
                                 <select class="form-control vertiqal-form-control vertiqal-form-select" name="delivery_date">
                                     <option>Select Date</option>
-                                    <option>Within 1 week</option>
-                                    <option>Within 2 weeks</option>
-                                    <option>Within 1 month</option>
-                                    <option>Custom date</option>
+                                    <option value="Within 1 week" {{ old('delivery_date', $bid->delivery_date ?? '') == 'Within 1 week' ? 'selected' : '' }}>Within 1 week</option>
+                                    <option value="Within 2 weeks" {{ old('delivery_date', $bid->delivery_date ?? '') == 'Within 2 weeks' ? 'selected' : '' }}>Within 2 weeks</option>
+                                    <option value="Within 1 month" {{ old('delivery_date', $bid->delivery_date ?? '') == 'Within 1 month' ? 'selected' : '' }}>Within 1 month</option>
+                                    <option value="">Custom date</option>
                                 </select>
                                 @error('delivery_date')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -130,7 +130,7 @@
                             <div class="vertiqal-currency-input">
                                 <span class="vertiqal-currency-symbol">₦</span>
                                 <input type="number" class="form-control vertiqal-form-control vertiqal-currency-field"
-                                    placeholder="2000" name="quantity" value="{{ old('quantity') }}">
+                                    placeholder="2000" name="quantity" value="{{ old('quantity', $bid->quantity) }}">
                             </div>
                             @error('quantity')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -158,7 +158,7 @@
             <div class="vertiqal-form-group">
                 <label class="vertiqal-form-label">Note to Buyer</label>
                 <textarea class="form-control vertiqal-form-control vertiqal-textarea" name="note"
-                    placeholder="Add any additional information or terms for the buyer...">{{ old('note') }}</textarea>
+                    placeholder="Add any additional information or terms for the buyer...">{{ old('note', $bid->note) }}</textarea>
             </div>
 
             <!-- Checkboxes -->
@@ -176,7 +176,7 @@
 
             <!-- Button Group -->
             <div class="vertiqal-button-group">
-                <a href="bids.php" class="btn vertiqal-btn-cancel">Cancel</a>
+                <a href="bids.php" class="btn vertiqal-btn-cancel" type="button">Cancel</a>
                 <button type="submit" class="btn vertiqal-btn-submit">Submit Bid</button>
             </div>
         </form>
