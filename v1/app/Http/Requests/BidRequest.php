@@ -23,11 +23,11 @@ class BidRequest extends FormRequest
     {
         return [
             'buyer_name' => ['required', 'string', 'max:255'],
-            'tender_id' => ['required', 'exists:tenders,id'],
-            'category_id' => ['nullable', 'exists:categories,id'],
-            'amount' => ['required', 'numeric', 'min:0'],
+            //'tender_id' => ['required', 'exists:tenders,id'],
+            'category_id' => ['required', 'exists:categories,id'],
+            // 'amount' => ['required', 'numeric', 'min:0'],
             'delivery_location' => ['required', 'string', 'max:255'],
-            'delivery_date' => ['required', 'date', 'after_or_equal:today'],
+            'delivery_date' => ['required', 'string'],
             'note' => ['nullable', 'string'],
             'document' => ['nullable', 'array'],
             'quantity' => ['required', 'integer', 'min:1'],
@@ -35,4 +35,9 @@ class BidRequest extends FormRequest
             'status' => ['in:Under Review,Accepted,Rejected'],
         ];
     }
+
+    // public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    // {
+    //     dd($validator->errors()->toArray());
+    // }
 }

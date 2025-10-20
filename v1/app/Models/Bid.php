@@ -8,6 +8,15 @@ class Bid extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'document' => 'array',
+    ];
+
+    public function vendor()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -18,4 +27,8 @@ class Bid extends Model
         return $this->belongsTo(Tender::class);
     }
 
+    public function contract()
+    {
+        return $this->hasOne(Contract::class);
+    }
 }
