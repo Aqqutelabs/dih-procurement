@@ -158,12 +158,19 @@ body {
     margin: 0;
     font-size: 14px;
     font-weight: 600;
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .vertiqal-user-details p {
     color: #9ca3af;
     margin: 0;
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 150px;
+    text-overflow: ellipsis;
 }
 
 .vertiqal-logout-btn {

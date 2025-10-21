@@ -146,7 +146,7 @@
     <!-- Main Content -->
     <div class="vertiqal-main-content">
 
-        @if (!Request::is('view_tender') && !Request::is('add_bid') && !Request::is('bids') && !Route::is('buyer.tenders'))
+        @if (!Request::is('view_tender') && !Route::is('bids.create') && !Request::is('bids') && !Route::is('buyer.tenders'))
         <!-- Header -->
         <div class="vertiqal-header">
             <div>
@@ -170,7 +170,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 
-
+    @yield('local_js')
 </body>
 
 </html>
