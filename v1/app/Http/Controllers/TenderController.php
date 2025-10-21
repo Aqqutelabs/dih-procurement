@@ -54,7 +54,7 @@ class TenderController extends Controller
 
         $tenders = $query->latest()->paginate(10);
 
-        return view('tenders', compact('tenders'));
+        return view('vendors.tenders.index', compact('tenders'));
     }
 
     // Buyers Tender
@@ -89,7 +89,7 @@ class TenderController extends Controller
             'user_id' => $user->id
         ]);
 
-        return redirect()->route('tenders.index')->with(
+        return redirect()->route('vendors.tenders.index')->with(
             'success',
             'Tender created successfully',
         );
@@ -101,7 +101,7 @@ class TenderController extends Controller
     public function show(Tender $tender)
     {
         $tender->load('buyer');
-        return view('view_tender', compact('tender'));
+        return view('vendors.tenders.show', compact('tender'));
     }
 
     /**
