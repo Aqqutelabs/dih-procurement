@@ -8,12 +8,16 @@
                 <h2 class="mb-2" style="color: #0f2d52; font-weight: 600;">Tenders</h2>
                 <p class="text-muted mb-0">Manage your procurement tenders and track progress</p>
             </div>
-            <button class="btn btn-primary" style="background-color: #0f2d52; border-color: #0f2d52;">
+            <button class="btn btn-primary" style="background-color: #0f2d52; border-color: #0f2d52;" data-toggle="modal"
+                data-target="#tenderModal">
                 <i class="fas fa-plus mr-2"></i> Create Tender
             </button>
         </div>
 
-        <div class="modal fade" id="cncMachineModal" tabindex="-1" role="dialog" aria-labelledby="cncMachineModalLabel" aria-hidden="true">
+        {{-- modals section --}}
+
+        <div class="modal fade" id="cncMachineModal" tabindex="-1" role="dialog" aria-labelledby="cncMachineModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -26,13 +30,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div style="position: relative;">
-                                    <img src="{{ asset('assets/img/worker.jpg') }}" 
-                                        alt="CNC Machine" class="product-image">
+                                    <img src="{{ asset('assets/img/worker.jpg') }}" alt="CNC Machine" class="product-image">
                                     <div class="verified-badge">
                                         <i class="fas fa-check-circle"></i> Verified Vendor
                                     </div>
                                 </div>
-                                
+
                                 <!-- Vendor Information -->
                                 <div class="vendor-box">
                                     <div class="vendor-name">
@@ -51,7 +54,7 @@
                                         <span class="certification-badge">CE Certified</span>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Specifications -->
                                 <div class="section-title">Specifications</div>
                                 <div>
@@ -69,11 +72,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <span class="category-badge">Machinery</span>
                                 <p class="text-muted">High-precision CNC machine for manufacturing operations</p>
-                                
+
                                 <div class="info-item">
                                     <i class="fas fa-map-marker-alt"></i>
                                     Corporate Tech Solutions • Austin, USA
@@ -86,13 +89,13 @@
                                     <i class="far fa-clock"></i>
                                     Lead Time: 4-6 weeks
                                 </div>
-                                
+
                                 <!-- Pricing -->
                                 <div class="section-title">Pricing</div>
                                 <div class="price-tag">$25,000 - $35,000</div>
                                 <p class="text-muted">per Each</p>
                                 <p class="text-muted">MOQ: 1 Each</p>
-                                
+
                                 <!-- Availability and Reviews -->
                                 <div class="row mt-4">
                                     <div class="col-6">
@@ -109,7 +112,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Action Buttons -->
                                 <div class="mt-4">
                                     <button class="btn btn-primary-custom">
@@ -134,28 +137,261 @@
             </div>
         </div>
 
+        <div class="modal fade" id="tenderModal" tabindex="-1" role="dialog" aria-labelledby="tenderModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="w-100">
+                            <h4 class="modal-title font-weight-bold" id="tenderModalLabel">Create New Tender</h4>
+                            <p class="mb-0 mt-2 text-muted" id="stepTitle">Step 1 of 3</p>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Step Indicator -->
+                        <div class="step-indicator">
+                            <div class="step-circle active" id="stepCircle1">1</div>
+                            <div class="step-line" id="stepLine1"></div>
+                            <div class="step-circle" id="stepCircle2">2</div>
+                            <div class="step-line" id="stepLine2"></div>
+                            <div class="step-circle" id="stepCircle3">3</div>
+                        </div>
+
+                        <!-- Step 1: Basic Information -->
+                        <div class="step-content active" id="step1">
+                            <div class="form-group">
+                                <label class="form-label">Tender Title</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" placeholder="Description......"></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Commodity Type</label>
+                                        <select class="custom-select">
+                                            <option selected>Select Commodity</option>
+                                            <option value="1">Agricultural Products</option>
+                                            <option value="2">Construction Materials</option>
+                                            <option value="3">Electronics</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Grade</label>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Quality Standards</label>
+                                <div id="qualityStandards">
+                                    <div class="quality-standard-item">
+                                        <input type="text" class="form-control" placeholder="">
+                                        <button type="button" class="btn btn-delete">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-add" id="addQualityStandard">
+                                    <i class="fas fa-plus"></i> Create Tender
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Details -->
+                        <div class="step-content" id="step2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Unit</label>
+                                        <select class="custom-select">
+                                            <option selected>Select Unit</option>
+                                            <option value="1">Kilograms (kg)</option>
+                                            <option value="2">Tons</option>
+                                            <option value="3">Pieces</option>
+                                            <option value="4">Liters</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Estimated Value</label>
+                                        <input type="number" class="form-control" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Currency</label>
+                                        <select class="custom-select">
+                                            <option selected>Naira</option>
+                                            <option value="1">USD</option>
+                                            <option value="2">EUR</option>
+                                            <option value="3">GBP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Commodity Type</label>
+                                        <select class="custom-select">
+                                            <option selected>Select Commodity</option>
+                                            <option value="1">Agricultural Products</option>
+                                            <option value="2">Construction Materials</option>
+                                            <option value="3">Electronics</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Grade</label>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Delivery Location</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Delivery Start Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Delivery End Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="crossBorder">
+                                <label class="custom-control-label" for="crossBorder">Cross-border tender</label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Timeline & Documents -->
+                        <div class="step-content" id="step3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Publish Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Opening Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Closing Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">BID Deadline</label>
+                                        <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Timezone</label>
+                                <select class="custom-select">
+                                    <option selected>UTC</option>
+                                    <option value="1">GMT</option>
+                                    <option value="2">EST</option>
+                                    <option value="3">PST</option>
+                                    <option value="4">WAT</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Upload Documents</label>
+                                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="upload-text">Click to upload or drag and drop</div>
+                                    <div class="upload-hint">PNG, JPG up to 5MB each</div>
+                                    <input type="file" id="fileInput" multiple accept=".png,.jpg,.jpeg">
+                                    <button type="button" class="btn btn-outline-secondary mt-3">Choose Files</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-cancel" data-dismiss="modal"
+                            id="cancelBtn">Cancel</button>
+                        <button type="button" class="btn btn-nav btn-previous" id="prevBtn"
+                            style="display: none;">Previous</button>
+                        <button type="button" class="btn btn-nav btn-next" id="nextBtn">Next</button>
+                        <button type="button" class="btn btn-nav btn-create" id="createBtn"
+                            style="display: none;">Create Tender</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- modals section --}}
+
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs border-bottom mb-4" id="tenderTabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab"
-                    aria-controls="all" aria-selected="true" style="color: #0f2d52; border-bottom: 3px solid #0f2d52;">All
+                    aria-controls="all" aria-selected="true"
+                    style="color: #0f2d52; border-bottom: 3px solid #0f2d52;">All
                     Tenders</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="active-tab" data-toggle="tab" href="#active" role="tab" aria-controls="active"
-                    aria-selected="false" style="color: #6c757d;">Active</a>
+                <a class="nav-link" id="active-tab" data-toggle="tab" href="#active" role="tab"
+                    aria-controls="active" aria-selected="false" style="color: #6c757d;">Active</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
-                    aria-selected="false" style="color: #6c757d;">Review</a>
+                <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                    aria-controls="review" aria-selected="false" style="color: #6c757d;">Review</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab"
                     aria-controls="completed" aria-selected="false" style="color: #6c757d;">Completed</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab" aria-controls="draft"
-                    aria-selected="false" style="color: #6c757d;">Draft</a>
+                <a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab"
+                    aria-controls="draft" aria-selected="false" style="color: #6c757d;">Draft</a>
             </li>
         </ul>
 
@@ -199,11 +435,13 @@
                             <tr>
                                 <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Tender
                                     Details</th>
-                                <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Date Created
+                                <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Date
+                                    Created
                                 </th>
                                 <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Bids</th>
                                 <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Value</th>
-                                <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Deadline</th>
+                                <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Deadline
+                                </th>
                                 <th class="border-0 text-muted font-weight-normal" style="font-size: 0.85rem;">Action</th>
                             </tr>
                         </thead>
@@ -226,7 +464,8 @@
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right"
                                             aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cncMachineModal">
+                                            <a class="dropdown-item" href="#" class="btn btn-primary btn-lg"
+                                                data-toggle="modal" data-target="#cncMachineModal">
                                                 <i class="far fa-eye mr-2"></i> View
                                             </a>
                                             <a class="dropdown-item" href="#">
@@ -338,7 +577,9 @@
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right"
                                             aria-labelledby="dropdownMenuButton5">
-                                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cncMachineModal">
+                                            <a class="dropdown-item" href="#" type="button"
+                                                class="btn btn-primary btn-lg" data-toggle="modal"
+                                                data-target="#cncMachineModal">
                                                 <i class="far fa-eye mr-2"></i> View
                                             </a>
                                             <a class="dropdown-item" href="#">
@@ -370,180 +611,446 @@
             </div>
         </div>
 
-        <style>
-            .nav-tabs .nav-link {
-                border: none;
-                border-bottom: 3px solid transparent;
-                color: #6c757d;
-                padding: 0.75rem 1.5rem;
-            }
-
-            .nav-tabs .nav-link:hover {
-                border-color: transparent;
-                color: #0f2d52;
-            }
-
-            .nav-tabs .nav-link.active {
-                color: #0f2d52;
-                border-bottom-color: #0f2d52;
-                background-color: transparent;
-            }
-
-            .table tbody tr {
-                border-bottom: 1px solid #e9ecef;
-            }
-
-            .table tbody tr:hover {
-                background-color: #f8f9fa;
-            }
-
-            .input-group-text {
-                border-right: 0;
-            }
-
-            .form-control:focus {
-                box-shadow: none;
-                border-color: #ced4da;
-            }
-
-            .product-image {
-                width: 100%;
-                height: 350px;
-                object-fit: cover;
-                border-radius: 8px;
-                position: relative;
-            }
-            
-            .verified-badge {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background: rgba(25, 58, 94, 0.9);
-                color: white;
-                padding: 8px 16px;
-                border-radius: 20px;
-                font-size: 14px;
-            }
-            
-            .vendor-box {
-                background: #f8f9fa;
-                border-radius: 8px;
-                padding: 1.5rem;
-                margin-top: 1rem;
-            }
-            
-            .vendor-name {
-                font-size: 1.1rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-            }
-            
-            .rating {
-                color: #ffc107;
-            }
-            
-            .certification-badge {
-                display: inline-block;
-                background: white;
-                border: 1px solid #dee2e6;
-                padding: 4px 12px;
-                border-radius: 4px;
-                font-size: 12px;
-                margin-right: 8px;
-                margin-top: 8px;
-            }
-            
-            .spec-row {
-                display: flex;
-                justify-content: space-between;
-                padding: 12px 0;
-                border-bottom: 1px solid #e9ecef;
-            }
-            
-            .spec-row:last-child {
-                border-bottom: none;
-            }
-            
-            .price-tag {
-                font-size: 2rem;
-                font-weight: 700;
-                color: #212529;
-                margin-bottom: 0.5rem;
-            }
-            
-            .info-item {
-                display: flex;
-                align-items: center;
-                margin-bottom: 0.75rem;
-                color: #6c757d;
-            }
-            
-            .info-item i {
-                margin-right: 10px;
-                width: 20px;
-            }
-            
-            .stock-badge {
-                color: #004085;
-                font-weight: 600;
-                font-size: 1.1rem;
-            }
-            
-            .btn-primary-custom {
-                background: #193a5e;
-                border: none;
-                padding: 12px;
-                font-weight: 600;
-                border-radius: 6px;
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            
-            .btn-primary-custom:hover {
-                background: #0f2540;
-            }
-            
-            .btn-outline-custom {
-                border: 1px solid #dee2e6;
-                background: white;
-                color: #495057;
-                padding: 12px;
-                border-radius: 6px;
-                width: 48%;
-                margin-bottom: 10px;
-            }
-            
-            .btn-secondary-custom {
-                background: #7589a3;
-                border: none;
-                padding: 12px;
-                color: white;
-                font-weight: 600;
-                border-radius: 6px;
-                width: 100%;
-            }
-            
-            .btn-group-custom {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 10px;
-            }
-            
-            .category-badge {
-                background: #e9ecef;
-                padding: 4px 12px;
-                border-radius: 4px;
-                font-size: 14px;
-                display: inline-block;
-                margin-bottom: 1rem;
-            }
-            
-            .section-title {
-                font-weight: 600;
-                font-size: 1.1rem;
-                margin-top: 1.5rem;
-                margin-bottom: 1rem;
-            }
-        </style>
     </div>
+@endsection
+
+@section('local_css')
+
+    <style>
+        .nav-tabs .nav-link {
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #6c757d;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border-color: transparent;
+            color: #0f2d52;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #0f2d52;
+            border-bottom-color: #0f2d52;
+            background-color: transparent;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .input-group-text {
+            border-right: 0;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .verified-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(25, 58, 94, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .vendor-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .vendor-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            color: #ffc107;
+        }
+
+        .certification-badge {
+            display: inline-block;
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #6c757d;
+        }
+
+        .info-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .stock-badge {
+            color: #004085;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary-custom {
+            background: #193a5e;
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary-custom:hover {
+            background: #0f2540;
+        }
+
+        .btn-outline-custom {
+            border: 1px solid #dee2e6;
+            background: white;
+            color: #495057;
+            padding: 12px;
+            border-radius: 6px;
+            width: 48%;
+            margin-bottom: 10px;
+        }
+
+        .btn-secondary-custom {
+            background: #7589a3;
+            border: none;
+            padding: 12px;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            width: 100%;
+        }
+
+        .btn-group-custom {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .category-badge {
+            background: #e9ecef;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+
+
+
+        .btn-trigger {
+            background-color: #003366;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 500;
+        }
+        .btn-trigger:hover {
+            background-color: #004080;
+        }
+        .modal-header {
+            border-bottom: none;
+            padding: 1.5rem 1.5rem 0;
+        }
+        .modal-body {
+            padding: 1.5rem;
+        }
+        .modal-footer {
+            border-top: none;
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background-color: #e9ecef;
+            color: #6c757d;
+            position: relative;
+            z-index: 2;
+        }
+        .step-circle.active {
+            background-color: #003366;
+            color: white;
+        }
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background-color: #e9ecef;
+            margin: 0 -1px;
+        }
+        .step-line.active {
+            background-color: #003366;
+        }
+        textarea.form-control {
+            min-height: 120px;
+        }
+        .btn-cancel {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+        }
+        .btn-cancel:hover {
+            background-color: #e9ecef;
+        }
+        .btn-nav {
+            padding: 0.75rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .btn-previous {
+            background-color: #f8f9fa;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        .btn-next, .btn-create {
+            background-color: #003366;
+            color: white;
+            border: none;
+        }
+        .btn-next:hover, .btn-create:hover {
+            background-color: #004080;
+        }
+        .quality-standard-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .quality-standard-item .form-control {
+            flex: 1;
+        }
+        .btn-delete {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+        }
+        .btn-delete:hover {
+            background-color: #e9ecef;
+        }
+        .btn-add {
+            color: #003366;
+            background: none;
+            border: none;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-add:hover {
+            color: #004080;
+        }
+        .upload-area {
+            border: 2px dashed #ced4da;
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #003366;
+            background-color: #e9ecef;
+        }
+        .upload-icon {
+            font-size: 2rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        .upload-text {
+            color: #495057;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .upload-hint {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+        .step-content {
+            display: none;
+        }
+        .step-content.active {
+            display: block;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-checkbox .custom-control-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        .quality-standard-item input{
+            height: 50px
+        }
+    </style>
+@endsection
+
+@section('local_js')
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateStepIndicator() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const circle = document.getElementById(`stepCircle${i}`);
+                if (i <= currentStep) {
+                    circle.classList.add('active');
+                } else {
+                    circle.classList.remove('active');
+                }
+            }
+
+            for (let i = 1; i < totalSteps; i++) {
+                const line = document.getElementById(`stepLine${i}`);
+                if (i < currentStep) {
+                    line.classList.add('active');
+                } else {
+                    line.classList.remove('active');
+                }
+            }
+
+            // Update step title
+            document.getElementById('stepTitle').textContent = `Step ${currentStep} of ${totalSteps}`;
+
+            // Update step content visibility
+            for (let i = 1; i <= totalSteps; i++) {
+                const content = document.getElementById(`step${i}`);
+                if (i === currentStep) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            }
+
+            // Update buttons
+            document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'inline-block';
+            document.getElementById('nextBtn').style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+            document.getElementById('createBtn').style.display = currentStep === totalSteps ? 'inline-block' : 'none';
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepIndicator();
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepIndicator();
+            }
+        });
+
+        document.getElementById('createBtn').addEventListener('click', function() {
+            alert('Tender created successfully!');
+            $('#tenderModal').modal('hide');
+        });
+
+        // Reset modal when closed
+        $('#tenderModal').on('hidden.bs.modal', function () {
+            currentStep = 1;
+            updateStepIndicator();
+        });
+
+        // Add quality standard functionality
+        document.getElementById('addQualityStandard').addEventListener('click', function() {
+            const container = document.getElementById('qualityStandards');
+            const newItem = document.createElement('div');
+            newItem.className = 'quality-standard-item';
+            newItem.innerHTML = `
+                <input type="text" class="form-control" placeholder="">
+                <button type="button" class="btn btn-delete" onclick="this.parentElement.remove()">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            `;
+            container.appendChild(newItem);
+        });
+
+        // Delete quality standard
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.remove();
+            });
+        });
+
+        // File upload handler
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                alert(`${files.length} file(s) selected`);
+            }
+        });
+    </script>
 @endsection

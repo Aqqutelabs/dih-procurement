@@ -19,7 +19,7 @@ class BidController extends Controller
         $categories = Category::all();
         $tenders = Tender::all();
         $bids = Bid::with('category', 'tender')->get();
-        return view('bids.index', compact('bids', 'categories', 'tenders'));
+        return view('vendors.bids.index', compact('bids', 'categories', 'tenders'));
     }
 
     /**
@@ -33,7 +33,7 @@ class BidController extends Controller
         $tenderId = $request->query('tender_id');
         $tender = Tender::findOrFail($tenderId);
 
-        return view('bids.create', compact('categories', 'tender'));
+        return view('vendors.bids.create',compact('categories', 'tender'));
     }
 
     /**
