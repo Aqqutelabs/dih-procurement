@@ -57,8 +57,16 @@ class TenderController extends Controller
         return view('tenders', compact('tenders'));
     }
 
-    public function buyer_view(Request $request){
-        return view('buyers.tenders');
+    // Buyers Tender
+    public function buyer_view(Request $request)
+    {
+        $user = auth()->user();
+
+        $tenders = Tender::withCount('bids')
+                ->where('user_id', $user->id)
+                ->latest()->paginate(10);
+
+        return view('buyers.tenders', compact('tenders'));
     }
 
     /**
