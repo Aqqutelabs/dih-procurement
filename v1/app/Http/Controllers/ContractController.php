@@ -41,4 +41,10 @@ class ContractController extends Controller
 
         return view('contracts', compact('contracts', 'contractCount', 'totalContractValue', 'pendingActions'));
     }
+
+    public function show(Contract $contract)
+    {
+        $contract->load('bid');
+        return view('vendors.view_purchase', compact('contracts'));
+    }
 }

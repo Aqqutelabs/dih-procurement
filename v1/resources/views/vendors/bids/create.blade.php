@@ -17,20 +17,27 @@
                 <h3 class="h6 font-weight-bold text-muted mb-3">Tender Information</h3>
 
                 <div class="row">
+                    <input type="hidden" name="tender_id" value="{{ $tender->id }}">
+                    {{-- <div class="col-md-6">
+                        <div class="vertiqal-form-group">
+                            <label class="vertiqal-form-label">Tender Title</label>
+                            <input type="text" class="form-control vertiqal-form-control" value="{{ $bid->tender->title }}" readonly>
+                        </div>
+                    </div> --}}
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Tender Title</label>
-                            <input type="text" class="form-control vertiqal-form-control" value="7 tons" readonly>
+                            <input type="text" class="form-control vertiqal-form-control" value="{{ $tender->title }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Buyer</label>
                             <input type="text" class="form-control vertiqal-form-control" name="buyer_name"
-                                placeholder="Buyer name will appear here" value="{{ old('buyer_name') }}">
-                            @error('buyer_name')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
+                                placeholder="Buyer name will appear here" value="{{ $tender->buyer->name }}">
+                                @error('buyer_name')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                 </div>
@@ -39,20 +46,25 @@
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Tender ID</label>
-                            <input type="text" class="form-control vertiqal-form-control" value="TNDR-2025-004" readonly>
+                            <input type="text" class="form-control vertiqal-form-control" name="tender_tid" value="{{ $tender->tid }}" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Categories</label>
                             <div class="vertiqal-select-wrapper">
-                                <select class="form-control vertiqal-form-control vertiqal-form-select">
-                                    <option>Select Category</option>
-                                    <option>Agriculture</option>
-                                    <option>Construction</option>
-                                    <option>Manufacturing</option>
-                                    <option>Services</option>
+                                <select class="form-control vertiqal-form-control vertiqal-form-select" name="category_id">
+                                    <option value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
                                 </select>
+                                @error('category_id')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -63,13 +75,17 @@
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Delivery Location</label>
                             <div class="vertiqal-select-wrapper">
-                                <select class="form-control vertiqal-form-control vertiqal-form-select">
+                                <select class="form-control vertiqal-form-control vertiqal-form-select" name="delivery_location"
+                                value="{{ old('delivery_location') }}">
                                     <option>Select Location</option>
-                                    <option>Lagos, Nigeria</option>
-                                    <option>Abuja, Nigeria</option>
-                                    <option>Port Harcourt, Nigeria</option>
-                                    <option>Kano, Nigeria</option>
+                                    <option value="lagos, nigeria">Lagos, Nigeria</option>
+                                    <option value="abuja, nigeria">Abuja, Nigeria</option>
+                                    <option value="port harcourt, nigeria">Port Harcourt, Nigeria</option>
+                                    <option value="kano, nigeria">Kano, Nigeria</option>
                                 </select>
+                                @error('delivery_location')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -79,8 +95,11 @@
                             <div class="vertiqal-currency-input">
                                 <span class="vertiqal-currency-symbol">₦</span>
                                 <input type="number" class="form-control vertiqal-form-control vertiqal-currency-field"
-                                    placeholder="2000" value="2000">
+                                    placeholder="2000" name="unit_price" value="{{ old('unit_price') }}">
                             </div>
+                            @error('unit_price')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -90,7 +109,7 @@
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Delivery Date</label>
                             <div class="vertiqal-select-wrapper">
-                                <select class="form-control vertiqal-form-control vertiqal-form-select">
+                                <select class="form-control vertiqal-form-control vertiqal-form-select" name="delivery_date">
                                     <option>Select Date</option>
                                     <option>Within 1 week</option>
                                     <option>Within 2 weeks</option>
@@ -109,8 +128,11 @@
                             <div class="vertiqal-currency-input">
                                 <span class="vertiqal-currency-symbol">₦</span>
                                 <input type="number" class="form-control vertiqal-form-control vertiqal-currency-field"
-                                    placeholder="2000" value="2000">
+                                    placeholder="2000" name="quantity" value="{{ old('quantity') }}">
                             </div>
+                            @error('quantity')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                         </div>
                     </div>
                 </div>
@@ -126,7 +148,7 @@
                     <div class="vertiqal-upload-title">Upload product images (Max 3)</div>
                     <div class="vertiqal-upload-description">PNG, JPG up to 5MB each</div>
                     <button type="button" class="vertiqal-upload-button">Choose Files</button>
-                    <input type="file" id="vertiqal-file-input" multiple accept=".png,.jpg,.jpeg" style="display: none;">
+                    <input type="file" id="vertiqal-file-input" name="document[]" multiple accept=".png,.jpg,.jpeg" style="display: none;">
 
                     <!-- File list container -->
                     <div id="vertiqal-file-list" class="vertiqal-file-list"></div>
@@ -136,8 +158,8 @@
             <!-- Note Section -->
             <div class="vertiqal-form-group">
                 <label class="vertiqal-form-label">Note to Buyer</label>
-                <textarea class="form-control vertiqal-form-control vertiqal-textarea"
-                    placeholder="Add any additional information or terms for the buyer..."></textarea>
+                <textarea class="form-control vertiqal-form-control vertiqal-textarea" name="note"
+                    placeholder="Add any additional information or terms for the buyer...">{{ old('note') }}</textarea>
             </div>
 
             <!-- Checkboxes -->

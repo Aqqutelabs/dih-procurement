@@ -123,7 +123,7 @@
                                             </div>
                                             <div class="vertiqal-meta-item">
                                                 <i class="fas fa-calendar-alt"></i>
-                                                <span>{{ $tender->bip_deadline->format('d M Y') }}</span>
+                                                <span>{{ $tender->bid_deadline->format('d M Y') }}</span>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">

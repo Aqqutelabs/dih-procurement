@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tenders', function (Blueprint $table) {
-            $table->string('delivery_location')->nullable();
+            $table->boolean('is_draft')->default(1);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tenders', function (Blueprint $table) {
-            $table->dropColumn('delivery_location');
+            $table->dropColumn('is_draft');
         });
     }
 };

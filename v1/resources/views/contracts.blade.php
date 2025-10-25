@@ -113,7 +113,7 @@
             </thead>
             <tbody>
                 @foreach ($contracts as $contract)
-                <tr class="vertiqal-table-row">
+                <tr class="vertiqal-table-row" data-href="{{ route('contract.show', $contract->id) }}">
                     <td class="vertiqal-contract-id">CNT-2025-001</td>
                     <td class="vertiqal-vendor-name">{{ $contract->vendor_name }}</td>
                     <td>Maize</td>

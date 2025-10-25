@@ -12,7 +12,7 @@
                 <a href="purchase.php"><i class="fas fa-arrow-left vertiqal-back-arrow"></i></a>
                 <h1 class="vertiqal-contract-title">Contract Details - CNT-2025-001</h1>
             </div>
-            <span class="vertiqal-status-badge">Pending</span>
+            <span class="vertiqal-status-badge">{{ $contract->status }}</span>
         </div>
 
         <!-- Main Content -->
@@ -24,13 +24,13 @@
                     <div class="vertiqal-overview-section">
                         <div class="vertiqal-section-header">
                             <h2 class="vertiqal-section-title">Contract Overview</h2>
-                            <span class="vertiqal-pending-badge">Pending</span>
+                            <span class="vertiqal-pending-badge">{{ $contract->status }}</span>
                         </div>
 
                         <div class="vertiqal-info-grid">
                             <div class="vertiqal-info-item">
                                 <span class="vertiqal-info-label">Vendor's Name</span>
-                                <span class="vertiqal-info-value">Office Supplies P.</span>
+                                <span class="vertiqal-info-value">{{ $contract->vendor_name }}</span>
                             </div>
                             <div class="vertiqal-info-item">
                                 <span class="vertiqal-info-label">Commodity</span>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="vertiqal-info-item">
                                 <span class="vertiqal-info-label">Total Value</span>
-                                <span class="vertiqal-info-value vertiqal-price-value">₦500,000</span>
+                                <span class="vertiqal-info-value vertiqal-price-value">₦{{ $contract->bid->amount }}</span>
                             </div>
                             <div class="vertiqal-info-item">
                                 <span class="vertiqal-info-label">Start Date</span>
@@ -79,12 +79,12 @@
 
                         <div class="vertiqal-party-item">
                             <div class="vertiqal-party-role">Buyer</div>
-                            <div class="vertiqal-party-name">Tech Solution Inc</div>
+                            <div class="vertiqal-party-name">{{ $contract->buyer_name }}</div>
                         </div>
 
                         <div class="vertiqal-party-item">
                             <div class="vertiqal-party-role">Vendor</div>
-                            <div class="vertiqal-party-name">Premium Office Supplies Ltd</div>
+                            <div class="vertiqal-party-name">{{ $contract->vendor_name }}</div>
                         </div>
                     </div>
                 </div>

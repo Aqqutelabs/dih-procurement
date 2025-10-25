@@ -108,7 +108,7 @@
                             <td class="vertiqal-amount">{{ $bid->amount }}</td>
                             <td class="vertiqal-location">{{ $bid->delivery_location }}</td>
                         <td><span class="badge vertiqal-status-badge vertiqal-status-review">{{ $bid->status }}</span></td>
-                            <td class="vertiqal-date">{{ $bid->created_at }}</td>
+                            <td class="vertiqal-date">{{ $bid->created_at->format('d M Y') }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn vertiqal-actions-dropdown" type="button" data-toggle="dropdown">

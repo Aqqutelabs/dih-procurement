@@ -23,4 +23,24 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('tenders', 'openTendersCount', 'submittedBidsCount'));
     }
+
+    // Buyers Dashboard
+    public function index()
+    {
+        $user = auth()->user();
+        $today = now();
+
+        $tenders = Tender::where('user_id', $user->id)->latest()->paginate(10);
+
+        $activeTendersCount = Tender::where('user_id', $user->id)
+            ->whereDate('closing_date', '>=', $today)
+            ->count();
+
+        // Pending bids on buyers tenders
+        $pendingBidsCount = Bid::whereHas('tender', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->where('status', 'Under Review')->count();
+
+        return view('buyers.dashboard', compact('tenders', 'activeTendersCount', 'pendingBidsCount'));
+    }
 }

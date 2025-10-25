@@ -26,19 +26,19 @@ class TenderController extends Controller
         $today = now();
         $query = Tender::with('buyer');
 
-        if($request->filled('search')) {
+        if ($request->filled('search')) {
             $search = $request->input('search');
 
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                     ->orWhere('delivery_location', 'like', "%{$search}%")
-                    ->orWhereHas('buyer', function($buyerQ) use ($search){
+                    ->orWhereHas('buyer', function ($buyerQ) use ($search) {
                         $buyerQ->where('name', 'like', "%{$search}%");
                     });
             });
         }
 
-        if($request->filled('location')) {
+        if ($request->filled('location')) {
             $query->where('delivery_location', $request->location);
         }
 
@@ -57,8 +57,25 @@ class TenderController extends Controller
         return view('vendors.tenders.index', compact('tenders'));
     }
 
-    public function buyer_view(Request $request){
-        return view('buyers.tenders');
+    // Buyers Tender
+    public function buyer_view(Request $request)
+    {
+        $user = auth()->user();
+        $filter = $request->query('filter');
+
+        $query = Tender::withCount('bids')->where('user_id', $user->id);
+
+        if ($filter == 'active') {
+            $query->where('closing_date', '>=', now());
+        } elseif ($filter == 'completed') {
+            $query->where('closing_date', '<=', now());
+        } elseif($filter == 'draft') {
+            $query->where('is_draft', true);
+        }
+
+        $tenders = $query->latest()->paginate(10);
+
+        return view('buyers.tenders', compact('tenders', 'filter'));
     }
 
     /**
@@ -69,19 +86,75 @@ class TenderController extends Controller
         return view('tenders.create');
     }
 
+    public function saveDraft(Request $request)
+    {
+        $user = auth()->user();
+        //dd('here');
+        $tender = Tender::updateOrCreate(
+            [
+                'id' => $request->input('draft_id'),
+                'user_id' => $user->id,
+            ],
+            [
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'quantity' => $request->input('quantity'),
+                'grade' => $request->input('grade'),
+                'unit' => $request->input('unit'),
+                'value' => $request->input('value'),
+                'commodity_type' => $request->input('commodity_type'),
+                'currency' => $request->input('currency'),
+                'quality_standard' => $request->input('quality_standard'),
+                'delivery_location' => $request->input('delivery_location'),
+                'delivery_start_date' => $request->input('delivery_start_date'),
+                'delivery_end_date' => $request->input('delivery_end_date'),
+                'publish_date' => $request->input('publish_date'),
+                'opening_date' => $request->input('opening_date'),
+                'closing_date' => $request->input('closing_date'),
+                'bid_deadline' => $request->input('bid_deadline'),
+                'timezone' => $request->input('timezone'),
+                'document' => $request->input('document'),
+                'cross_border_tender' => $request->input('cross_border_tender'),
+                'is_draft' => true,
+            ]
+        );
+
+        return response()->json([
+            'success' => true,
+            'draft_id' => $tender->id,
+            'message' => 'Draft saved successfully'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(TenderRequest $request)
     {
+        //dd($request->all());
         $user = auth()->user();
 
-        $tender = Tender::create([
-            $request->validated(),
-            'user_id' => $user->id
-        ]);
+        // Handle document uploads
+        $documentPaths = [];
+        if ($request->hasFile('document')) {
+            foreach ($request->file('document') as $file) {
+                $path = $file->store('tender_documents', 'public');
+                $documentPaths[] = $path;
+            }
+        }
 
-        return redirect()->route('vendors.tenders.index')->with(
+        $data = $request->validated();
+
+        $data['user_id'] = $user->id;
+        $data['is_draft'] = false;
+        $data['document'] = $documentPaths;
+
+        //$tender = Tender::create($data);
+
+        $tender = Tender::findOrFail($request->draft_id);
+        $tender->update($data);
+
+        return redirect()->route('buyer.tenders')->with(
             'success',
             'Tender created successfully',
         );

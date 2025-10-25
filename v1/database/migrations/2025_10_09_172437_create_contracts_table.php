@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
+            $table->string('cid')->unique();
             $table->string('buyer_name');
             $table->string('vendor_name');
             $table->foreignId('bid_id')->constrained()->nullable();
