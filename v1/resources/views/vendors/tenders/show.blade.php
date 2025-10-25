@@ -119,7 +119,7 @@
                             <i class="fas fa-calendar vertiqal-info-icon"></i>
                             <div>
                                 <div class="vertiqal-info-label">Opening Date</div>
-                                <div class="vertiqal-info-value">January 10, 2025</div>
+                                <div class="vertiqal-info-value">{{ $tender->opening_date }}</div>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                             <i class="fas fa-calendar vertiqal-info-icon"></i>
                             <div>
                                 <div class="vertiqal-info-label">Closing Date</div>
-                                <div class="vertiqal-info-value">February 10, 2025</div>
+                                <div class="vertiqal-info-value">{{ $tender->closing_date }}</div>
                             </div>
                         </div>
                     </div>

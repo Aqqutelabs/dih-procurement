@@ -26,18 +26,18 @@ class TenderRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'grade' => ['nullable', 'string', 'max:255'],
             'quantity' => ['required', 'integer', 'min:1'],
-            'unit' => ['required', 'integer', 'min:1'],
+            'unit' => ['required', 'string', 'max:255'],
             'value' => ['nullable', 'integer', 'min:0'],
             'commodity_type' => ['nullable', 'string', 'max:255'],
             'currency' => ['required', 'string', 'max:10'],
-            'quality_standard' => ['nullable', 'string', 'max:255'],
+            'quality_standard' => ['nullable', 'array'], // JSON
             'delivery_location' => ['nullable', 'string', 'max:255'],
             'delivery_start_date' => ['required', 'date'],
             'delivery_end_date' => ['required', 'date', 'after_or_equal:delivery_start_date'],
             'publish_date' => ['nullable', 'date'],
             'opening_date' => ['nullable', 'date'],
             'closing_date' => ['nullable', 'date', 'after_or_equal:opening_date'],
-            'bip_deadline' => ['nullable', 'date'],
+            'bid_deadline' => ['nullable', 'date'],
             'timezone' => ['nullable', 'string', 'max:100'],
             'document' => ['nullable', 'array'], // JSON
             'cross_border_tender' => ['boolean'],
@@ -58,4 +58,9 @@ class TenderRequest extends FormRequest
             'closing_date.after_or_equal' => 'The closing date must be after or equal to the opening date',
         ];
     }
+
+    // public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    // {
+    //     dd($validator->errors()->toArray());
+    // }
 }

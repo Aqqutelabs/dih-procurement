@@ -9,8 +9,10 @@ class Tender extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'quality_standard' => 'array',
+        'document' => 'array',
         'opening_date' => 'datetime',
-        'bip_deadline' => 'datetime',
+        'bid_deadline' => 'datetime',
         'delivery_start_date' => 'datetime',
         'delivery_end_date' => 'datetime',
         'closing_date' => 'datetime',

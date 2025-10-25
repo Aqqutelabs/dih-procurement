@@ -92,7 +92,7 @@
                             Deadline: {{ $tender->delivery_end_date->format('M d, Y') }}
                         </div>
                         <div class="vertiqal-tender-actions">
-                            <a href="#" class="vertiqal-btn-view">View</a>
+                            <a href="{{ route('tenders.show', $tender->id) }}" class="vertiqal-btn-view">View</a>
                             <button class="vertiqal-btn-bid">Bid Now</button>
                         </div>
                     </div>

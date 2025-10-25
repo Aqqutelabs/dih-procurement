@@ -44,30 +44,30 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('contracts', [ContractController::class, 'index'])->name('contract.index');
+    Route::get('contracts/{contract}', [ContractController::class, 'show'])->name('contract.show');
+
     // Buyer
     Route::middleware(['role:buyer'])->group(function () {
         Route::get('/buyer/tenders', [TenderController::class, 'buyer_view'])->name('buyer.tenders');
-    });
+        Route::post('/tenders/draft', [TenderController::class, 'saveDraft'])->name('tenders.draft');
 
-    Route::middleware(['role:buyer'])->group(function () {
-            Route::post('bid/status', [BidController::class, 'acceptBid'])->name('bid.accept');
-        });
+        Route::resource('tenders', TenderController::class);
+
+        Route::post('bid/status', [BidController::class, 'acceptBid'])->name('bid.accept');
+    });
 
     // Vendor
     Route::middleware(['role:vendor'])->group(function () {
-        Route::resource('tenders', TenderController::class);
+        Route::get('tenders', [TenderController::class, 'index'])->name('tenders.index');
+        Route::get('tenders/{tender}', [TenderController::class, 'show'])->name('tenders.show');
+        //Route::resource('tenders', TenderController::class);
 
-        Route::get('/contracts', function () {
-            return view('contracts');
-        });
         //Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('products', ProductController::class);
         Route::resource('bids', BidController::class);
 
-
-
-        Route::get('contracts', [ContractController::class, 'index'])->name('contract.index');
     });
 });
 

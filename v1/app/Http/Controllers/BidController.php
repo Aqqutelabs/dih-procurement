@@ -18,7 +18,7 @@ class BidController extends Controller
     {
         $categories = Category::all();
         $tenders = Tender::all();
-        $bids = Bid::with('category', 'tender')->get();
+        $bids = Bid::with('category', 'tender')->latest()->get();
         return view('vendors.bids.index', compact('bids', 'categories', 'tenders'));
     }
 
@@ -48,7 +48,7 @@ class BidController extends Controller
         $documentPaths = [];
         if ($request->hasFile('document')) {
             foreach ($request->file('document') as $file) {
-                $path = $file->store('documents', 'public');
+                $path = $file->store('bid_documents', 'public');
                 $documentPaths[] = $path;
             }
         }
