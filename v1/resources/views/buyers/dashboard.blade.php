@@ -58,13 +58,14 @@
             <div class="vertiqal-activity-list">
                 @foreach ($tenders as $tender)
                     @php
-                        $daysLeft = now()->diffInDays($tender->closing_date, false);
+                        $daysLeft = now()->startOfDay()->diffInDays(($tender->closing_date)->startOfDay(), false);
                     @endphp
                     <div class="vertiqal-activity-item">
                         <div class="vertiqal-activity-indicator green"></div>
                         <div class="vertiqal-activity-content">
                             <h3 class="vertiqal-activity-name">{{ $tender->title }}</h3>
-                            <p class="vertiqal-activity-meta">Closes in {{ (int) $daysLeft }} {{ \Illuminate\Support\Str::plural('day', $daysLeft) }} • {{ $tender->closing_date }}</p>
+                            <p class="vertiqal-activity-meta">Closes in {{ (int) $daysLeft }} {{ \Illuminate\Support\Str::plural('day', $daysLeft) }} • {{ ($tender->closing_date)->format('Y-m-d') }}
+</p>
                         </div>
                         <span class="vertiqal-activity-status open">Open</span>
                     </div>

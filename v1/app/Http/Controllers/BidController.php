@@ -8,19 +8,102 @@ use App\Models\Category;
 use App\Models\Contract;
 use App\Models\Tender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class BidController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function index(Request $request)
     {
+        $search = $request->query('search');
+        $status = $request->query('status');
+        $categoryId = $request->query('category_id');
+        $location = $request->query('location');
+        $dateRange = $request->query('date_range');
+
+        $query = Bid::with(['category', 'tender.buyer']);
+
+        // status (tabs + dropdown)
+        if (!empty($status) && $status !== 'All Bids') {
+            $query->where('status', $status);
+        }
+
+        // search — find bids where tender title OR tender's buyer name
+        if ($request->filled('search')) {
+            $s = $request->search;
+            $query->whereHas('tender', function ($tq) use ($s) {
+                $tq->where('title', 'like', "%{$s}%")
+                    ->orWhereHas('buyer', function ($bq) use ($s) {
+                        $bq->where('name', 'like', "%{$s}%");
+                    });
+            });
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('location')) {
+            $query->where('delivery_location', $request->location);
+        }
+
+        // date range presets
+        if ($request->filled('date_range')) {
+            $now = now();
+            switch ($request->date_range) {
+                case 'last_7_days':
+                    $from = $now->copy()->subDays(7);
+                    break;
+                case 'last_30_days':
+                    $from = $now->copy()->subDays(30);
+                    break;
+                case 'last_3_months':
+                    $from = $now->copy()->subMonths(3);
+                    break;
+                case 'last_6_months':
+                    $from = $now->copy()->subMonths(6);
+                    break;
+                default:
+                    $from = null;
+            }
+            if ($from) {
+                $query->whereBetween('created_at', [$from, $now]);
+            }
+        }
+
+        $bids = $query->latest()->get();
         $categories = Category::all();
-        $tenders = Tender::all();
-        $bids = Bid::with('category', 'tender')->latest()->get();
-        return view('vendors.bids.index', compact('bids', 'categories', 'tenders'));
+
+        return view('vendors.bids.index', compact('bids', 'categories'))
+            ->with('status', $status);
     }
+
+
+    // public function index(Request $request)
+    // {
+    //     $search = $request->input('search');
+
+    //     $bids = Bid::with(['category', 'tender.buyer'])
+    //         ->when($search, function ($query, $search) {
+    //             $query->whereHas('tender', function ($q) use ($search) {
+    //                 $q->where('title', 'like', "%{$search}%")
+    //                     ->orWhereHas('buyer', function ($bq) use ($search) {
+    //                         $bq->where('name', 'like', "%{$search}%");
+    //                     });
+    //             });
+    //         })
+    //         ->latest()
+    //         ->get();
+
+    //     $categories = Category::all();
+    //     $tenders = Tender::all();
+
+    //     return view('vendors.bids.index', compact('bids', 'categories', 'tenders', 'search'));
+    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -66,17 +149,18 @@ class BidController extends Controller
 
         //dd('here');
 
-        // return redirect()->route('bids.index')->with(
-        //     'success',
-        //     'Bid created successfully',
-        // );
+        return redirect()->route('bids.index')->with(
+            'success',
+            'Bid submitted successfully',
+        );
 
-        return redirect()->back()->with('bid_success', [
-            'title' => 'Congratulations',
-            'message' => 'Your Bid for "' . $request->tender_title . '" has been successfully submitted.',
-            'bid_id' => $bid->id,
-            'tender_title' => $request->tender_title
-        ]);
+        // return redirect()->back()->with('bid_success', [
+        //     'title' => 'Congratulations',
+        //     'message' => 'Your Bid for "' . $request->tender_title . '" has been successfully submitted.',
+        //     'bid_id' => $bid->id,
+        //     'tender_title' => $request->tender_title
+        // ]);
+
     }
 
     public function acceptBid(Request $request, Bid $bid)
@@ -89,7 +173,7 @@ class BidController extends Controller
 
         $bid = Bid::with('tender')->findorFail($request->bid_id);
 
-        if($bid->tender->user_id != $user->id) {
+        if ($bid->tender->user_id != $user->id) {
             return redirect()->back()->with('error', 'Unauthorized');
         }
 
@@ -115,7 +199,7 @@ class BidController extends Controller
 
         $bid = Bid::with('tender')->findorFail($request->bid_id);
 
-        if($bid->tender->user_id != $user->id) {
+        if ($bid->tender->user_id != $user->id) {
             return redirect()->back()->with('error', 'Unauthorized');
         }
 
@@ -140,7 +224,7 @@ class BidController extends Controller
         $user = auth()->user();
 
         // Use policy later
-        if($bid->user_id != $user->id) {
+        if ($bid->user_id != $user->id) {
             abort(403, 'Unauthorized');
         }
 
@@ -158,7 +242,7 @@ class BidController extends Controller
         $user = auth()->user();
 
         // Use policy later
-        if($bid->user_id != $user->id) {
+        if ($bid->user_id != $user->id) {
             abort(403, 'Unauthorized');
         }
 

@@ -10,10 +10,10 @@
                 <div class="row">
                     <div class="col-12">
                         <nav class="d-flex flex-wrap">
-                            <a href="#" class="vertiqal-tab active">All Tenders</a>
-                            <a href="#" class="vertiqal-tab">Open</a>
-                            <a href="#" class="vertiqal-tab">Closed</a>
-                            <a href="#" class="vertiqal-tab">My Bids</a>
+                            <a href="{{ route('tenders.index', array_merge(request()->query(), [ 'status' => null ])) }}" class="vertiqal-tab {{ $status == null ? 'active' : '' }}">All Tenders</a>
+                            <a href="{{ route('tenders.index', array_merge(request()->query(), [ 'status' => 'open' ])) }}" class="vertiqal-tab {{ $status == 'open' ? 'active' : '' }}">Open</a>
+                            <a href="{{ route('tenders.index', array_merge(request()->query(), [ 'status' => 'closed' ])) }}" class="vertiqal-tab {{ $status == 'closed' ? 'active' : '' }}">Closed</a>
+                            <a href="{{ route('tenders.index', array_merge(request()->query(), [ 'status' => 'my-bids' ])) }}" class="vertiqal-tab {{ $status == 'my-bids' ? 'active' : '' }}">My Bids</a>
                         </nav>
                     </div>
                 </div>
@@ -42,10 +42,8 @@
                         </div>
                     </div>
                 </div>
-            </form>
 
             <!-- Filters -->
-            <form method="GET" action="{{ route('tenders.index') }}"">
                 <div class="row">
                     <div class="col-12">
                         <div class="vertiqal-filters">
@@ -62,7 +60,7 @@
                                 <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
                                     <label class="font-weight-bold mb-2 text-muted">Location</label>
                                     <select name="location" class="form-control vertiqal-select" onchange="this.form.submit()">
-                                        <option>All Market</option>
+                                        <option value="">All Market</option>
                                         <option value="Kaduna" {{ request('location') == 'Kaduna' ? 'selected' : '' }}>Kaduna</option>
                                         <option value="Lagos" {{ request('location') == 'Lagos' ? 'selected' : '' }}>Lagos</option>
                                         <option value="Abuja" {{ request('location') == 'Abuja' ? 'selected' : '' }}>Abuja</option>
@@ -89,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="status" value="{{ request('status') }}">
                 </div>
             </form>
 

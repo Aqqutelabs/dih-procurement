@@ -176,3 +176,16 @@
     </div>
 </div>
 @endsection
+
+<script>
+    // Click Contracts
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.vertiqal-table-row').forEach(row => {
+            row.addEventListener('click', () => {
+                window.location.href = row.dataset.href;
+            });
+        });
+    });
+</script>
+
+

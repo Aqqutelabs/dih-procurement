@@ -404,7 +404,7 @@
         {{-- modals section --}}
 
         <!-- Tabs Navigation -->
-        <ul class="nav nav-tabs border-bottom mb-4" id="tenderTabs" role="tablist">
+        {{-- <ul class="nav nav-tabs border-bottom mb-4" id="tenderTabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="all-tab" href="{{ route('buyer.tenders') }}" aria-controls="all"
                     aria-selected="true" style="color: #0f2d52; border-bottom: 3px solid #0f2d52;">All
@@ -426,9 +426,26 @@
                 <a class="nav-link" id="draft-tab" href="{{ route('buyer.tenders', ['filter' => 'draft']) }}"
                     aria-controls="draft" aria-selected="false" style="color: #6c757d;">Draft</a>
             </li>
+        </ul> --}}
+
+        <ul class="nav nav-tabs border-bottom mb-4" id="tenderTabs" role="tablist">
+            @php
+                $statuses = ['All Tenders', 'Active', 'Review', 'Completed', 'Draft'];
+            @endphp
+
+            @foreach ($statuses as $s)
+        <li class="nav-item">
+            <a class="nav-link {{ ($status ?? 'All Tenders') === $s ? 'active' : '' }}"
+               href="{{ route('buyer.tenders', array_merge(request()->except('page'), ['status' => $s])) }}"
+               style="color: #0f2d52; border-bottom: {{ ($status ?? 'All Tenders') === $s ? '3px solid #0f2d52' : 'none' }};">
+                {{ $s }}
+            </a>
+        </li>
+    @endforeach
         </ul>
 
         <!-- Search and Filter Section -->
+        <form action="{{ route('buyer.tenders') }}" method="GET">
         <div class="row mb-4">
             <div class="col-md-8">
                 <div class="input-group">
@@ -437,8 +454,8 @@
                             <i class="fas fa-search text-muted"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control border-left-0 pl-0"
-                        placeholder="Search by product name, buyers and location..." style="font-size: 0.95rem;">
+                    <input type="text" name="search" class="form-control border-left-0 pl-0"
+                        placeholder="Search by product name, buyers and location..." value="{{ request('search') }}" style="font-size: 0.95rem;">
                 </div>
             </div>
             <div class="col-md-4">
@@ -449,6 +466,7 @@
                 </select>
             </div>
         </div>
+        </form>
 
         <!-- Tenders Overview Section -->
         <div class="d-flex justify-content-between align-items-center mb-3">

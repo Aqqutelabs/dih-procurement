@@ -45,6 +45,6 @@ class ContractController extends Controller
     public function show(Contract $contract)
     {
         $contract->load('bid');
-        return view('vendors.view_purchase', compact('contracts'));
+        return view('vendors.view_purchase', compact('contract'));
     }
 }

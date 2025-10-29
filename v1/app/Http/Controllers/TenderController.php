@@ -23,7 +23,7 @@ class TenderController extends Controller
     // Vendors Tender
     public function index(Request $request)
     {
-        $today = now();
+        $user = auth()->user();
         $query = Tender::with('buyer');
 
         if ($request->filled('search')) {
@@ -42,41 +42,66 @@ class TenderController extends Controller
             $query->where('delivery_location', $request->location);
         }
 
-        // if ($request->has('filter')) {
-        //     $filter = $request->filter;
+        $status = $request->query('status');
 
-        //     if ($filter === 'active') {
-        //         $query->whereDate('delivery_end_date', '>=', $today);
-        //     } else if ($filter = 'completed') {
-        //         $query->whereDate('delivery_end_date', '<', $today);
-        //     }
-        // }
+        if($status == 'open') {
+            $query->whereDate('bid_deadline', '>=', now());
+        } elseif($status == 'closed') {
+            $query->whereDate('bid_deadline', '<=', now());
+        } elseif($status == 'my-bids') {
+            $query->whereHas('bids', function($q) use ($user) {
+                $q->where('user_id', $user->id);
+            });
+        }
 
-        $tenders = $query->latest()->paginate(10);
+        $tenders = $query->latest()->paginate(10)->appends($request->query());
 
-        return view('vendors.tenders.index', compact('tenders'));
+        return view('vendors.tenders.index', compact('tenders', 'status'));
     }
 
     // Buyers Tender
     public function buyer_view(Request $request)
     {
         $user = auth()->user();
-        $filter = $request->query('filter');
+        $search = $request->query('search');
+        $status = $request->query('status', 'All Tenders');
 
         $query = Tender::withCount('bids')->where('user_id', $user->id);
 
-        if ($filter == 'active') {
-            $query->where('closing_date', '>=', now());
-        } elseif ($filter == 'completed') {
-            $query->where('closing_date', '<=', now());
-        } elseif($filter == 'draft') {
-            $query->where('is_draft', true);
+        // Search across title, delivery location, and buyer name
+        if ($request->filled('search')) {
+            $s = $request->search;
+            $query->where(function ($q) use ($s) {
+                $q->where('title', 'like', "%{$s}%")
+                    ->orWhere('delivery_location', 'like', "%{$s}%")
+                    ->orWhereHas('buyer', function ($b) use ($s) {
+                        $b->where('name', 'like', "%{$s}%");
+                    });
+            });
+        }
+
+        // Filter by tab status
+        switch (strtolower($status)) {
+            case 'active':
+                $query->where('closing_date', '>=', now());
+                break;
+            case 'review':
+                $query->where('closing_date', '>=', now())
+                    ->where('status', 'Under Review');
+                break;
+            case 'completed':
+                $query->where('closing_date', '<=', now());
+                break;
+            case 'draft':
+                $query->where('is_draft', true);
+                break;
         }
 
         $tenders = $query->latest()->paginate(10);
 
-        return view('buyers.tenders', compact('tenders', 'filter'));
+        return view('buyers.tenders', compact('tenders', 'search', 'status'));
     }
+
 
     /**
      * Show the form for creating a new resource.

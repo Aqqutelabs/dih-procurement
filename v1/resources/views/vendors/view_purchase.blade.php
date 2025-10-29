@@ -9,7 +9,7 @@
         <!-- Contract Header -->
         <div class="vertiqal-contract-header d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <a href="purchase.php"><i class="fas fa-arrow-left vertiqal-back-arrow"></i></a>
+                <a href="{{ route('contract.index') }}"><i class="fas fa-arrow-left vertiqal-back-arrow"></i></a>
                 <h1 class="vertiqal-contract-title">Contract Details - CNT-2025-001</h1>
             </div>
             <span class="vertiqal-status-badge">{{ $contract->status }}</span>

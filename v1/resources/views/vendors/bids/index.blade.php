@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('bartitle', 'Bid Management')
-@section('title', "Bid Management")
+@section('title', 'Bid Management')
 @section('subtitle', 'Monitor your bid submissions and track their progress')
 @section('content')
     <!-- paste your code in between -->
@@ -19,7 +19,7 @@
         </a> --}}
     </div>
 
-        <ul class="nav nav-tabs vertiqal-nav-tabs" role="tablist">
+    {{-- <ul class="nav nav-tabs vertiqal-nav-tabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" href="#all-bids" data-toggle="tab">All Bids</a>
             </li>
@@ -35,114 +35,146 @@
             <li class="nav-item">
                 <a class="nav-link" href="#rejected" data-toggle="tab">Rejected</a>
             </li>
-        </ul>
+        </ul> --}}
 
-        <div class="vertiqal-filters-row">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="vertiqal-search-wrapper">
-                        <i class="fas fa-search vertiqal-search-icon"></i>
-                        <input type="text" class="form-control vertiqal-search-input"
-                            placeholder="Search the tender title and buyer's name...">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <select class="form-control">
-                        <option>Status</option>
-                        <option>Under Review</option>
-                        <option>Accepted</option>
-                        <option>Rejected</option>
-                        <option>Submitted</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select class="form-control">
-                        <option>Category</option>
-                        <option>Grains</option>
-                        <option>Livestock</option>
-                        <option>Vegetables</option>
-                        <option>Fruits</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <select class="form-control">
-                        <option>Location</option>
-                        <option>Kano</option>
-                        <option>Lagos</option>
-                        <option>Abuja</option>
-                        <option>Kaduna</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-control">
-                        <option>Date Range</option>
-                        <option>Last 7 days</option>
-                        <option>Last 30 days</option>
-                        <option>Last 3 months</option>
-                        <option>Last 6 months</option>
-                    </select>
+    <ul class="nav nav-tabs vertiqal-nav-tabs" role="tablist">
+    @php
+        $statuses = ['All Bids', 'Submitted', 'Under Review', 'Accepted', 'Rejected'];
+    @endphp
+
+    @foreach ($statuses as $s)
+        <li class="nav-item">
+            <a class="nav-link {{ ($status ?? 'All Bids') === $s ? 'active' : '' }}"
+               href="{{ route('bids.index', array_merge(request()->except('page'), ['status' => $s])) }}">
+                {{ $s }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
+<form id="filterForm" action="{{ route('bids.index') }}" method="GET">
+    <div class="vertiqal-filters-row">
+        <div class="row g-2 align-items-center">
+            {{-- SEARCH --}}
+            <div class="col-md-3">
+                <div class="vertiqal-search-wrapper position-relative">
+                    <i class="fas fa-search vertiqal-search-icon"></i>
+                    <input type="text"
+                           name="search"
+                           class="form-control vertiqal-search-input"
+                           placeholder="Search tender title or buyer name..."
+                           value="{{ request('search') }}">
                 </div>
             </div>
+
+            {{-- STATUS (DROPDOWN) --}}
+            <div class="col-md-2">
+                <select class="form-control" name="status" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">Status</option>
+                    <option value="Under Review" {{ request('status') === 'Under Review' ? 'selected' : '' }}>Under Review</option>
+                    <option value="Accepted" {{ request('status') === 'Accepted' ? 'selected' : '' }}>Accepted</option>
+                    <option value="Rejected" {{ request('status') === 'Rejected' ? 'selected' : '' }}>Rejected</option>
+                    <option value="Submitted" {{ request('status') === 'Submitted' ? 'selected' : '' }}>Submitted</option>
+                </select>
+            </div>
+
+            {{-- CATEGORY --}}
+            <div class="col-md-2">
+                <select class="form-control" name="category_id" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">Category</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            {{-- LOCATION --}}
+            <div class="col-md-2">
+                <select class="form-control" name="location" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">Location</option>
+                    <option value="Kano" {{ request('location') == 'Kano' ? 'selected' : '' }}>Kano</option>
+                    <option value="Lagos" {{ request('location') == 'Lagos' ? 'selected' : '' }}>Lagos</option>
+                    <option value="Abuja" {{ request('location') == 'Abuja' ? 'selected' : '' }}>Abuja</option>
+                    <option value="Kaduna" {{ request('location') == 'Kaduna' ? 'selected' : '' }}>Kaduna</option>
+                </select>
+            </div>
+
+            {{-- DATE RANGE --}}
+            <div class="col-md-3">
+                <select class="form-control" name="date_range" onchange="document.getElementById('filterForm').submit()">
+                    <option value="">All Dates</option>
+                    <option value="last_7_days" {{ request('date_range') == 'last_7_days' ? 'selected' : '' }}>Last 7 days</option>
+                    <option value="last_30_days" {{ request('date_range') == 'last_30_days' ? 'selected' : '' }}>Last 30 days</option>
+                    <option value="last_3_months" {{ request('date_range') == 'last_3_months' ? 'selected' : '' }}>Last 3 months</option>
+                    <option value="last_6_months" {{ request('date_range') == 'last_6_months' ? 'selected' : '' }}>Last 6 months</option>
+                </select>
+            </div>
         </div>
+    </div>
+</form>
 
-        <div class="vertiqal-table-wrapper">
-            <table class="table vertiqal-table">
-                <thead>
+    <div class="vertiqal-table-wrapper">
+        <table class="table vertiqal-table">
+            <thead>
+                <tr>
+                    <th>Tender Title</th>
+                    <th>Buyer</th>
+                    <th>Category</th>
+                    <th>Bid Amount</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Submitted On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($bids as $bid)
                     <tr>
-                        <th>Tender Title</th>
-                        <th>Buyer</th>
-                        <th>Category</th>
-                        <th>Bid Amount</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                        <th>Submitted On</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($bids as $bid)
-                        <tr>
-                            <td class="vertiqal-tender-title">{{ $bid->tender->title }}</td>
-                            <td class="vertiqal-buyer-name">{{ $bid->buyer_name }}</td>
-                            <td><span class="vertiqal-category-badge">{{ $bid->category->name }}</span></td>
-                            <td class="vertiqal-amount">{{ $bid->amount }}</td>
-                            <td class="vertiqal-location">{{ $bid->delivery_location }}</td>
-                        <td><span class="badge vertiqal-status-badge vertiqal-status-review">{{ $bid->status }}</span></td>
-                            <td class="vertiqal-date">{{ $bid->created_at->format('d M Y') }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn vertiqal-actions-dropdown" type="button" data-toggle="dropdown">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
-                                    <div class="dropdown-menu vertiqal-actions-menu">
-                                        <a class="dropdown-item vertiqal-edit-action" href="{{ route('bids.edit', $bid->id) }}">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </a>
-                                        <a class="dropdown-item vertiqal-message-action" href="#">
-                                            <i class="fas fa-envelope"></i> Message
-                                        </a>
-                                        <a class="dropdown-item vertiqal-upload-action" href="#">
-                                            <i class="fas fa-upload"></i> Upload Docs
-                                        </a>
-                                        <form action="{{ route('bids.destroy', $bid->id) }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="dropdown-item vertiqal-delete-action">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </button>
-                                        </form>
+                        <td class="vertiqal-tender-title">{{ $bid->tender->title }}</td>
+                        <td class="vertiqal-buyer-name">{{ $bid->buyer_name }}</td>
+                        <td><span class="vertiqal-category-badge">{{ $bid->category->name }}</span></td>
+                        <td class="vertiqal-amount">{{ $bid->amount }}</td>
+                        <td class="vertiqal-location">{{ $bid->delivery_location }}</td>
+                        <td><span class="badge vertiqal-status-badge vertiqal-status-review">{{ $bid->status }}</span>
+                        </td>
+                        <td class="vertiqal-date">{{ $bid->created_at->format('d M Y') }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn vertiqal-actions-dropdown" type="button" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu vertiqal-actions-menu">
+                                    <a class="dropdown-item vertiqal-edit-action"
+                                        href="{{ route('bids.edit', $bid->id) }}">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item vertiqal-message-action" href="#">
+                                        <i class="fas fa-envelope"></i> Message
+                                    </a>
+                                    <a class="dropdown-item vertiqal-upload-action" href="#">
+                                        <i class="fas fa-upload"></i> Upload Docs
+                                    </a>
+                                    <form action="{{ route('bids.destroy', $bid->id) }}" method="POST"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item vertiqal-delete-action">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
 
-                                        {{-- <a class="dropdown-item vertiqal-delete-action" href="#">
+                                    {{-- <a class="dropdown-item vertiqal-delete-action" href="#">
                                             <i class="fas fa-trash"></i> Delete
                                         </a> --}}
-                                    </div>
                                 </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
 
-                    {{-- <tr>
+                {{-- <tr>
                     <td class="vertiqal-tender-title">Supply of Dry Maize</td>
                     <td class="vertiqal-buyer-name">Agro Foods Ltd</td>
                     <td><span class="vertiqal-category-badge">Grains</span></td>
@@ -235,9 +267,9 @@
                         </div>
                     </td>
                 </tr> --}}
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
     </div>
     <!-- paste your code in between -->
 @endsection

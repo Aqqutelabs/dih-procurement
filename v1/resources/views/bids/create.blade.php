@@ -36,7 +36,7 @@
                         <div class="vertiqal-form-group">
                             <label class="vertiqal-form-label">Buyer</label>
                             <input type="text" class="form-control vertiqal-form-control" name="buyer_name"
-                                placeholder="Buyer name will appear here" value="{{ $tender->buyer->name }}">
+                                placeholder="Buyer name will appear here" value="{{ $tender->buyer->name }}" readonly>
                                 @error('buyer_name')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror

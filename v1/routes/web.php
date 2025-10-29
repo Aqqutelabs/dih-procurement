@@ -65,7 +65,6 @@ Route::middleware('auth')->group(function () {
 
         //Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-        Route::resource('products', ProductController::class);
         Route::resource('bids', BidController::class);
 
     });
